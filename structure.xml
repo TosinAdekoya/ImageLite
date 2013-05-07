@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="">
+  <file path="imagelite.class.php" hash="dd1b235016603b6c5edf081b58f0a244" package="ImageLite">
+    <docblock line="3">
+      <description>&lt;h4&gt;A light-weight PHP image resizer with dynamic caching.&lt;/h4&gt;</description>
+      <long-description></long-description>
+      <tag line="3" name="license" description="GPL"/>
+      <tag line="3" name="package" description="ImageLite"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="111" package="ImageLite">
+      <extends/>
+      <name>ImageLite</name>
+      <full_name>\ImageLite</full_name>
+      <docblock line="10">
+        <description>&lt;h4&gt;A light-weight PHP image resizer with dynamic caching.&lt;/h4&gt;</description>
+        <long-description>&lt;p&gt;A simple solution to fulfil the most common image resizing tasks with &lt;a href="http://php.net/manual/en/book.image.php" target="_blank"&gt;GD&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Supported Image Types&lt;/strong&gt;
+    &lt;ul&gt;
+        &lt;li&gt;JPEG&lt;/li&gt;
+        &lt;li&gt;GIF + Transparency&lt;/li&gt;
+        &lt;li&gt;PNG + Transparency&lt;/li&gt;
+    &lt;/ul&gt;
+ &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resize&lt;/strong&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Standard/Proportional&lt;/li&gt;
+        &lt;li&gt;Crop-to-fit&lt;/li&gt;
+        &lt;li&gt;Letterbox&lt;/li&gt;
+        &lt;li&gt;Percentage&lt;/li&gt;
+    &lt;/ul&gt;
+ &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Manipulation&lt;/strong&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Sharpen&lt;/li&gt;
+        &lt;li&gt;Rotate&lt;/li&gt;
+        &lt;li&gt;Aspect Ratio toggle&lt;/li&gt;
+        &lt;li&gt;Contrain dimensions&lt;/li&gt;
+        &lt;li&gt;Quality/Compression&lt;/li&gt;
+    &lt;/ul&gt;
+ &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;File Saving&lt;/strong&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Custom destination path&lt;/li&gt;
+        &lt;li&gt;Automated cache with custom expiration setting&lt;/li&gt;
+    &lt;/ul&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Example 1:&lt;/h2&gt;
+
+&lt;p&gt;Resize and save an image to a specfic location.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;try {
+    include_once("imagelite.class.php");
+
+    $srcUri = ImageLite::inst("./src.jpg")-&gt;sharpen(7)-&gt;resize(100,200)-&gt;save("./new.jpg")-&gt;getUri();
+
+    echo "&amp;lt;img src='{$srcUri}' /&amp;gt;";
+}
+catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Example 2:&lt;/h2&gt;
+
+&lt;p&gt;Resize an image and store it in the cache.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;try {
+    include_once("imagelite.class.php");
+
+    ImageLite::setCacheRootDirectory("/path/to/images/cache/directory", true);
+
+    $img = ImageLite::inst("/path/to/src/image.jpg")-&gt;quality(70)-&gt;resize(100,200)-&gt;save();
+
+    echo "&amp;lt;img src='". $img-&gt;getUri() ."' /&amp;gt;";
+}
+catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Example 3:&lt;/h2&gt;
+
+&lt;p&gt;Resize an image and store it in the cache (note that chaining is not used).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;try {
+    include_once("imagelite.class.php");
+
+    ImageLite::setCacheRootDirectory("/path/to/cache/directory", true);
+    ImageLite::setMode(0777);
+    ImageLite::setCacheUri("/assets/cache/");
+
+    $img = ImageLite::inst("/path/to/original/image.jpg");
+    $img-&gt;quality(70);
+    $img-&gt;aspectRatio(false);
+    $img-&gt;sharpen(8);
+    $img-&gt;resize(100,200);
+    $img-&gt;save();
+    echo "&amp;lt;img src='". $img-&gt;getUri() ."' /&amp;gt;";
+}
+catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}
+&lt;/code&gt;&lt;/pre&gt;</long-description>
+        <tag line="10" name="package" description="ImageLite"/>
+        <tag line="10" name="version" description="1.0.0"/>
+        <tag line="10" name="license" description="GPL"/>
+        <tag line="10" name="link" description="Source repository" link="https://github.com/mirrorpixel/ImageLite"/>
+        <tag line="10" name="link" description="Image sharpening uses imageconvolution (available in PHP 5.1+ only)" link="http://php.net/manual/en/function.imageconvolution.php"/>
+        <tag line="10" name="todo" description="Unit tests"/>
+      </docblock>
+      <property final="false" static="true" visibility="protected" line="119" namespace="global" package="Default">
+        <name>$instances</name>
+        <default>array()</default>
+        <docblock line="114">
+          <description>Array of instances for each image object</description>
+          <long-description></long-description>
+          <tag line="114" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="114" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="protected" line="128" namespace="global" package="Default">
+        <name>$cacheRootDir</name>
+        <default>null</default>
+        <docblock line="122">
+          <description>Path to the root directory of the cache</description>
+          <long-description></long-description>
+          <tag line="122" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="122" name="example" description="/home/website/public_html/assets/cache"/>
+          <tag line="122" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="protected" line="137" namespace="global" package="Default">
+        <name>$cacheUri</name>
+        <default>null</default>
+        <docblock line="131">
+          <description>Absolute/relative URI path to the cache</description>
+          <long-description></long-description>
+          <tag line="131" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="131" name="example" description="/assets/cache"/>
+          <tag line="131" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="protected" line="146" namespace="global" package="Default">
+        <name>$documentRoot</name>
+        <default>null</default>
+        <docblock line="140">
+          <description>Path to the document root directory</description>
+          <long-description></long-description>
+          <tag line="140" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="140" name="example" description="/home/website/public_html"/>
+          <tag line="140" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="protected" line="156" namespace="global" package="Default">
+        <name>$imgLifetime</name>
+        <default>null</default>
+        <docblock line="149">
+          <description>Lifetime of a cached image</description>
+          <long-description></long-description>
+          <tag line="149" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="149" name="link" description="Value is used with strtotime()" link="http://www.php.net/manual/en/datetime.formats.relative.php"/>
+          <tag line="149" name="example" description="&quot;-4 months&quot;"/>
+          <tag line="149" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="protected" line="164" namespace="global" package="Default">
+        <name>$mode</name>
+        <default>493</default>
+        <docblock line="159">
+          <description>Default mode for directories and files</description>
+          <long-description></long-description>
+          <tag line="159" name="var" description="An octal number" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="159" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="172" namespace="global" package="Default">
+        <name>$srcFilePath</name>
+        <default>null</default>
+        <docblock line="167">
+          <description>Source image file path</description>
+          <long-description></long-description>
+          <tag line="167" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="167" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="184" namespace="global" package="Default">
+        <name>$resizeType</name>
+        <default>"standard"</default>
+        <docblock line="175">
+          <description>The type of resize to perform</description>
+          <long-description></long-description>
+          <tag line="175" name="example" description="standard"/>
+          <tag line="175" name="example" description="crop-to-fit"/>
+          <tag line="175" name="example" description="letterbox"/>
+          <tag line="175" name="example" description="percent"/>
+          <tag line="175" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="175" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="192" namespace="global" package="Default">
+        <name>$srcImg</name>
+        <default>null</default>
+        <docblock line="187">
+          <description>Resource for source image</description>
+          <long-description></long-description>
+          <tag line="187" name="var" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+          <tag line="187" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="199" namespace="global" package="Default">
+        <name>$dstImg</name>
+        <default>null</default>
+        <docblock line="194">
+          <description>Resource for destination image</description>
+          <long-description></long-description>
+          <tag line="194" name="var" description="" type="resource">
+            <type by_reference="false">resource</type>
+          </tag>
+          <tag line="194" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="207" namespace="global" package="Default">
+        <name>$srcWidth</name>
+        <default>null</default>
+        <docblock line="202">
+          <description>The width of the source image</description>
+          <long-description></long-description>
+          <tag line="202" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="202" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="215" namespace="global" package="Default">
+        <name>$srcHeight</name>
+        <default>null</default>
+        <docblock line="210">
+          <description>The height of the source image</description>
+          <long-description></long-description>
+          <tag line="210" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="210" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="223" namespace="global" package="Default">
+        <name>$maxWidth</name>
+        <default>null</default>
+        <docblock line="218">
+          <description>The max width of the new image</description>
+          <long-description></long-description>
+          <tag line="218" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="218" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="231" namespace="global" package="Default">
+        <name>$maxHeight</name>
+        <default>null</default>
+        <docblock line="226">
+          <description>The max height of the new image</description>
+          <long-description></long-description>
+          <tag line="226" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="226" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="239" namespace="global" package="Default">
+        <name>$dstWidth</name>
+        <default>1</default>
+        <docblock line="234">
+          <description>The calculated width for the destination image</description>
+          <long-description></long-description>
+          <tag line="234" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="234" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="247" namespace="global" package="Default">
+        <name>$dstHeight</name>
+        <default>1</default>
+        <docblock line="242">
+          <description>The calculated height for the destination image</description>
+          <long-description></long-description>
+          <tag line="242" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="242" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="256" namespace="global" package="Default">
+        <name>$dstX</name>
+        <default>0</default>
+        <docblock line="250">
+          <description>X-coordinate of destination point</description>
+          <long-description></long-description>
+          <tag line="250" name="link" description="See imagecopyresampled()" link="http://php.net/manual/en/function.imagecopyresampled.php"/>
+          <tag line="250" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="250" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="265" namespace="global" package="Default">
+        <name>$dstY</name>
+        <default>0</default>
+        <docblock line="259">
+          <description>Y-coordinate of destination point</description>
+          <long-description></long-description>
+          <tag line="259" name="link" description="See imagecopyresampled()" link="http://php.net/manual/en/function.imagecopyresampled.php"/>
+          <tag line="259" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="259" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="274" namespace="global" package="Default">
+        <name>$srcX</name>
+        <default>0</default>
+        <docblock line="268">
+          <description>X-coordinate of source point</description>
+          <long-description></long-description>
+          <tag line="268" name="link" description="See imagecopyresampled()" link="http://php.net/manual/en/function.imagecopyresampled.php"/>
+          <tag line="268" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="268" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="283" namespace="global" package="Default">
+        <name>$srcY</name>
+        <default>0</default>
+        <docblock line="277">
+          <description>Y-coordinate of source point</description>
+          <long-description></long-description>
+          <tag line="277" name="link" description="See imagecopyresampled()" link="http://php.net/manual/en/function.imagecopyresampled.php"/>
+          <tag line="277" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="277" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="293" namespace="global" package="Default">
+        <name>$imageType</name>
+        <default>null</default>
+        <docblock line="286">
+          <description>Image type</description>
+          <long-description>&lt;p&gt;ie. gif, jpg or png&lt;/p&gt;</long-description>
+          <tag line="286" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="286" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="301" namespace="global" package="Default">
+        <name>$keepAspectRatio</name>
+        <default>true</default>
+        <docblock line="296">
+          <description>The status of whether the aspect ratio of the image should be maintained</description>
+          <long-description></long-description>
+          <tag line="296" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="296" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="311" namespace="global" package="Default">
+        <name>$quality</name>
+        <default>75</default>
+        <docblock line="304">
+          <description>Quality of the image when resized</description>
+          <long-description>&lt;p&gt;Range: 0 (worst quality/small file size) to 100 (best quality/large file size)&lt;/p&gt;</long-description>
+          <tag line="304" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="304" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="321" namespace="global" package="Default">
+        <name>$rotation</name>
+        <default>0</default>
+        <docblock line="314">
+          <description>The angle in degrees in which to rotate an image</description>
+          <long-description>&lt;p&gt;Range: 0 degrees to 359 degrees (support for -270, -180, -90, 0, 90, 180, 270)&lt;/p&gt;</long-description>
+          <tag line="314" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="314" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="331" namespace="global" package="Default">
+        <name>$sharpen</name>
+        <default>0</default>
+        <docblock line="324">
+          <description>The level of sharpening that should be applied to an image</description>
+          <long-description>&lt;p&gt;Range: 0 (no sharpening) to 100 (maximum sharpening)&lt;/p&gt;</long-description>
+          <tag line="324" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="324" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="339" namespace="global" package="Default">
+        <name>$constrain</name>
+        <default>true</default>
+        <docblock line="334">
+          <description>Contrain the re-sizing of an image to it's original dimensions</description>
+          <long-description></long-description>
+          <tag line="334" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="334" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="347" namespace="global" package="Default">
+        <name>$customDestinationFilePath</name>
+        <default>null</default>
+        <docblock line="342">
+          <description>Save resized image to this custom file path rather than the cache</description>
+          <long-description></long-description>
+          <tag line="342" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="342" name="access" description="protected"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="354" package="ImageLite">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="350">
+          <description>Constructor</description>
+          <long-description></long-description>
+          <tag line="350" name="param" description="Path to the image file" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="354">
+          <name>$filePath</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="371" package="ImageLite">
+        <name>getInstance</name>
+        <full_name>getInstance</full_name>
+        <docblock line="366">
+          <description>Get an instance</description>
+          <long-description></long-description>
+          <tag line="366" name="param" description="The path to the image file" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="366" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="371">
+          <name>$filePath</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="387" package="ImageLite">
+        <name>inst</name>
+        <full_name>inst</full_name>
+        <docblock line="382">
+          <description>Shorthand alias for getInstance()</description>
+          <long-description></long-description>
+          <tag line="382" name="param" description="The path to the image file" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="382" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="387">
+          <name>$filePath</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="399" package="ImageLite">
+        <name>debug</name>
+        <full_name>debug</full_name>
+        <docblock line="393">
+          <description>Print/output debug information</description>
+          <long-description>&lt;p&gt;This is for developer purposes only. Call this method to output helpful information during development.&lt;/p&gt;</long-description>
+          <tag line="393" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="432" package="ImageLite">
+        <name>getBytes</name>
+        <full_name>getBytes</full_name>
+        <docblock line="420">
+          <description>Get bytes from shorthand byte notation</description>
+          <long-description>&lt;p&gt;If a suffix is not found, then the original value is returned&lt;/p&gt;</long-description>
+          <tag line="420" name="see" description="\http://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes" refers="\http://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes"/>
+          <tag line="420" name="example" description="getBytes(&quot;1G&quot;); &lt;br /&gt; Returns: 1073741824"/>
+          <tag line="420" name="example" description="getBytes(&quot;1M&quot;); &lt;br /&gt; Returns: 1048576"/>
+          <tag line="420" name="example" description="getBytes(&quot;1K&quot;); &lt;br /&gt; Returns: 1024"/>
+          <tag line="420" name="example" description="getBytes(&quot;1024&quot;); &lt;br /&gt; Returns: 1024"/>
+          <tag line="420" name="param" description="A number followed by a suffix of 'G' (Gig), 'M' (Megabytes) or 'K' (Kilobytes)" type="string|integer" variable="$val">
+            <type by_reference="false">string</type>
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="420" name="return" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+        <argument line="432">
+          <name>$val</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="458" package="ImageLite">
+        <name>getMemoryExhaustedMsg</name>
+        <full_name>getMemoryExhaustedMsg</full_name>
+        <docblock line="449">
+          <description>Get a memory exhausted message</description>
+          <long-description>&lt;p&gt;Based on the width/height of the source image and the current memory limit we must estimate
+how much memory will be required to resize the image without exhausting the memory.
+ie. Prevent an error such as "Fatal error: Allowed memory size of 76532345 bytes exhausted (tried to allocate 345 bytes) in page.php&lt;/p&gt;</long-description>
+          <tag line="449" name="param" description="A file path can be added to the message (optional)" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="449" name="return" description="String: Memory will potentially be exhausted. False: Memory will not be exhausted." type="boolean|string">
+            <type by_reference="false">boolean</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="458">
+          <name>$filePath</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="506" package="ImageLite">
+        <name>setCacheRootDirectory</name>
+        <full_name>setCacheRootDirectory</full_name>
+        <docblock line="497">
+          <description>Set cache directory</description>
+          <long-description></long-description>
+          <tag line="497" name="param" description="Path to the root cache directory" type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="497" name="param" description="Create the directory" type="string" variable="$create">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="497" name="example" description="setCacheRootDirectory(&quot;/home/website/public_html/assets/cache&quot;);"/>
+          <tag line="497" name="example" description="setCacheRootDirectory(&quot;../assets/cache&quot;);"/>
+          <tag line="497" name="example" description="setCacheRootDirectory(&quot;/home/website/public_html/assets/cache&quot;, true); &lt;br /&gt;Create the directory path if not found and if 2nd argument is TRUE"/>
+          <tag line="497" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="506">
+          <name>$path</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="506">
+          <name>$create</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="538" package="ImageLite">
+        <name>getCacheRootDirectory</name>
+        <full_name>getCacheRootDirectory</full_name>
+        <docblock line="534">
+          <description>Get cache directory</description>
+          <long-description></long-description>
+          <tag line="534" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="551" package="ImageLite">
+        <name>setCacheUri</name>
+        <full_name>setCacheUri</full_name>
+        <docblock line="544">
+          <description>Set cache URI (optional)</description>
+          <long-description></long-description>
+          <tag line="544" name="param" description="URI path to the root cache directory" type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="544" name="example" description="setCacheRootUri(&quot;/cache/&quot;); &lt;br /&gt;Absolute URI path to cache."/>
+          <tag line="544" name="example" description="setCacheRootUri(&quot;assets/cache&quot;); &lt;br /&gt;Relative URI path to cache."/>
+          <tag line="544" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="551">
+          <name>$path</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="569" package="ImageLite">
+        <name>getCacheUri</name>
+        <full_name>getCacheUri</full_name>
+        <docblock line="565">
+          <description>Get cache URI</description>
+          <long-description></long-description>
+          <tag line="565" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="583" package="ImageLite">
+        <name>setDocumentRoot</name>
+        <full_name>setDocumentRoot</full_name>
+        <docblock line="575">
+          <description>Set document root (optional)</description>
+          <long-description></long-description>
+          <tag line="575" name="param" description="Path to document root directory. Default: $_SERVER[&quot;DOCUMENT_ROOT&quot;]." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="575" name="example" description="setDocumentRoot(&quot;/home/website/public_html&quot;);"/>
+          <tag line="575" name="example" description="setDocumentRoot(&quot;/home/website/public_html/subsite/&quot;);"/>
+          <tag line="575" name="example" description="setDocumentRoot(&quot;../../public_html&quot;);"/>
+          <tag line="575" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="583">
+          <name>$path</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="605" package="ImageLite">
+        <name>getDocumentRoot</name>
+        <full_name>getDocumentRoot</full_name>
+        <docblock line="600">
+          <description>Get document root</description>
+          <long-description></long-description>
+          <tag line="600" name="access" description="protected"/>
+          <tag line="600" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="625" package="ImageLite">
+        <name>setLifetime</name>
+        <full_name>setLifetime</full_name>
+        <docblock line="616">
+          <description>Set image expiration lifetime</description>
+          <long-description></long-description>
+          <tag line="616" name="param" description="A time period set as a negative (eg. -3 months)" type="string" variable="$lifetime">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="616" name="example" description="setLifetime(null); &lt;br /&gt;Image will never expire (default)"/>
+          <tag line="616" name="example" description="setLifetime(&quot;-1 month&quot;); &lt;br /&gt;Creates a new image after 1 month"/>
+          <tag line="616" name="example" description="setLifetime(&quot;-30 seconds&quot;); &lt;br /&gt;Creates a new image after 30 seconds"/>
+          <tag line="616" name="link" description="Preferred format for $lifetime" link="http://www.php.net/manual/en/datetime.formats.relative.php"/>
+          <tag line="616" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="625">
+          <name>$lifetime</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="643" package="ImageLite">
+        <name>setMode</name>
+        <full_name>setMode</full_name>
+        <docblock line="631">
+          <description>Set mode permissions</description>
+          <long-description>&lt;p&gt;The mode set by this method will be applied to directories and images that are automatically created&lt;/p&gt;</long-description>
+          <tag line="631" name="param" description="An octal integer" type="integer" variable="$mode">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="631" name="example" description="setMode(0600); &lt;br /&gt;Read and write for owner, nothing for everybody else"/>
+          <tag line="631" name="example" description="setMode(0644); &lt;br /&gt;Read and write for owner, read for everybody else"/>
+          <tag line="631" name="example" description="setMode(0755); &lt;br /&gt;Everything for owner, read and execute for others"/>
+          <tag line="631" name="example" description="setMode(0750); &lt;br /&gt;Everything for owner, read and execute for owner's group"/>
+          <tag line="631" name="link" description="chmod" link="http://php.net/manual/en/function.chmod.php"/>
+          <tag line="631" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="643">
+          <name>$mode</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="protected" namespace="global" line="655" package="ImageLite">
+        <name>createDirectory</name>
+        <full_name>createDirectory</full_name>
+        <docblock line="649">
+          <description>Create a directory path</description>
+          <long-description></long-description>
+          <tag line="649" name="param" description="Path to the directory" type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="649" name="param" description="Set as true to ignore a filename in the path" type="boolean" variable="$hasFilename">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="649" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="655">
+          <name>$path</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="655">
+          <name>$hasFilename</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="691" package="ImageLite">
+        <name>setFilePath</name>
+        <full_name>setFilePath</full_name>
+        <docblock line="686">
+          <description>Set the path to the image file</description>
+          <long-description></long-description>
+          <tag line="686" name="param" description="The path to the image file" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="686" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="691">
+          <name>$filePath</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="725" package="ImageLite">
+        <name>getCacheDestinationDirectoryPath</name>
+        <full_name>getCacheDestinationDirectoryPath</full_name>
+        <docblock line="721">
+          <description>Get destination directory path</description>
+          <long-description></long-description>
+          <tag line="721" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="748" package="ImageLite">
+        <name>getCacheDestinationFilename</name>
+        <full_name>getCacheDestinationFilename</full_name>
+        <docblock line="744">
+          <description>Get destination filename</description>
+          <long-description></long-description>
+          <tag line="744" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="758" package="ImageLite">
+        <name>getCacheDestinationFilePath</name>
+        <full_name>getCacheDestinationFilePath</full_name>
+        <docblock line="754">
+          <description>Get destination file path</description>
+          <long-description></long-description>
+          <tag line="754" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="771" package="ImageLite">
+        <name>aspectRatio</name>
+        <full_name>aspectRatio</full_name>
+        <docblock line="764">
+          <description>Set aspect ratio status</description>
+          <long-description></long-description>
+          <tag line="764" name="param" description="Set as TRUE or FALSE" type="boolean" variable="$keep">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="764" name="example" description="aspectRatio(true); &lt;br /&gt;Keep the aspect ratio"/>
+          <tag line="764" name="example" description="aspectRatio(false); &lt;br /&gt;Ignore the aspect ratio and fulfil the exact maximum dimensions"/>
+          <tag line="764" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="771">
+          <name>$keep</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="783" package="ImageLite">
+        <name>quality</name>
+        <full_name>quality</full_name>
+        <docblock line="778">
+          <description>Set quality (compression) level</description>
+          <long-description></long-description>
+          <tag line="778" name="param" description="Range from 0 (worst quality) to 100 (best quality). Default is 75." type="integer" variable="$level">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="778" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="783">
+          <name>$level</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="796" package="ImageLite">
+        <name>sharpen</name>
+        <full_name>sharpen</full_name>
+        <docblock line="791">
+          <description>Set sharpening level</description>
+          <long-description></long-description>
+          <tag line="791" name="param" description="Range from 0 (no sharpening) to 100 (maximum sharpening). Default is 0." type="integer" variable="$level">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="791" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="796">
+          <name>$level</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="811" package="ImageLite">
+        <name>constrain</name>
+        <full_name>constrain</full_name>
+        <docblock line="804">
+          <description>Set dimension constraint</description>
+          <long-description></long-description>
+          <tag line="804" name="param" description="Set as TRUE or FALSE. Default is TRUE." type="boolean" variable="$status">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="804" name="example" description="contrain(true); &lt;br /&gt;Do not allow the image to be enlarged beyond its original dimensions."/>
+          <tag line="804" name="example" description="contrain(false); &lt;br /&gt;Allow the image to be enlarged beyond its original dimensions."/>
+          <tag line="804" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="811">
+          <name>$status</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="824" package="ImageLite">
+        <name>rotate</name>
+        <full_name>rotate</full_name>
+        <docblock line="818">
+          <description>Set rotation angle in degrees</description>
+          <long-description></long-description>
+          <tag line="818" name="todo" description="Potentially allow for degrees other than -90, -180, -270, 90, 180 and 270"/>
+          <tag line="818" name="param" description="The angle in degrees including negative numbers (eg. -90, 90, 180, 270). Default is 0 (no rotation)." type="integer" variable="$angle">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="818" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="824">
+          <name>$angle</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="837" package="ImageLite">
+        <name>hasExpired</name>
+        <full_name>hasExpired</full_name>
+        <docblock line="832">
+          <description>Has cached image expired</description>
+          <long-description></long-description>
+          <tag line="832" name="param" description="" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="832" name="return" description="TRUE (Yes, file has expired) or FALSE (No, file has not expired)" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="837">
+          <name>$filePath</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="855" package="ImageLite">
+        <name>setImageInfo</name>
+        <full_name>setImageInfo</full_name>
+        <docblock line="850">
+          <description>Set basic image information</description>
+          <long-description></long-description>
+          <tag line="850" name="param" description="" type="string" variable="$filePath">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="850" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="855">
+          <name>$filePath</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="891" package="ImageLite">
+        <name>resizePercent</name>
+        <full_name>resizePercent</full_name>
+        <docblock line="886">
+          <description>Set width/height for percentage resize</description>
+          <long-description></long-description>
+          <tag line="886" name="param" description="Range from 1 to 100" type="integer" variable="$percentage">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="886" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="891">
+          <name>$percentage</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="923" package="ImageLite">
+        <name>resizeCropToFit</name>
+        <full_name>resizeCropToFit</full_name>
+        <docblock line="914">
+          <description>Set width/height for crop-to-fit resize</description>
+          <long-description></long-description>
+          <tag line="914" name="param" description="Max width (Note: constrain() has no affect)" type="integer|null" variable="$width">
+            <type by_reference="false">integer</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="914" name="param" description="Max height (Note: constrain() has no affect)" type="integer|null" variable="$height">
+            <type by_reference="false">integer</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="914" name="example" description="resizeCropToFit(250); &lt;br /&gt;Resize and crop image to match 250x250."/>
+          <tag line="914" name="example" description="resizeCropToFit(null, 300); &lt;br /&gt;Resize and crop image to match 300x300."/>
+          <tag line="914" name="example" description="resizeCropToFit(250, 300); &lt;br /&gt;Resize and crop image to match 250x300."/>
+          <tag line="914" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="923">
+          <name>$width</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="923">
+          <name>$height</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1006" package="ImageLite">
+        <name>resizeLetterbox</name>
+        <full_name>resizeLetterbox</full_name>
+        <docblock line="988">
+          <description>Set width/height for letterbox resize</description>
+          <long-description>&lt;p&gt;Expect the following for background colours:&lt;br /&gt;
+&lt;strong&gt;JPEG:&lt;/strong&gt; Only a solid background colour can be applied.&lt;br /&gt;
+&lt;strong&gt;PNG:&lt;/strong&gt; A solid &amp;amp; transparent background colour can be applied.&lt;br /&gt;
+&lt;strong&gt;GIF:&lt;/strong&gt; A solid background colour can be applied or a full transparency is used if $bgAlpha is 127&lt;/p&gt;</long-description>
+          <tag line="988" name="param" description="Max width." type="integer|null" variable="$width">
+            <type by_reference="false">integer</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="988" name="param" description="Max height" type="integer|null" variable="$height">
+            <type by_reference="false">integer</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="988" name="param" description="6-digit hexadecimal background colour (eg. &quot;FFFFFF&quot; = White)" type="string" variable="$bgColour">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="988" name="param" description="Transparency of the background colour, range between 0 (opaque) and 127 (transparent)." type="integer" variable="$bgAlpha">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="988" name="example" description="resizeLetterbox(250); &lt;br /&gt;Resize image to match 250x250 using a letter box effect."/>
+          <tag line="988" name="example" description="resizeLetterbox(null, 300); &lt;br /&gt;Resize image to match 300x300 using a letter box effect."/>
+          <tag line="988" name="example" description="resizeLetterbox(250, 300); &lt;br /&gt;Resize image to match 250x300 using a letter box effect."/>
+          <tag line="988" name="example" description="resizeLetterbox(250, 300, &quot;FFFFFF&quot;); &lt;br /&gt;Resize image to match 250x300 using a letter box effect with a white background."/>
+          <tag line="988" name="example" description="resizeLetterbox(250, 300, &quot;FFFFFF&quot;, 80); &lt;br /&gt;Resize image to match 250x300 using a letter box effect with a transparent white background."/>
+          <tag line="988" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="1006">
+          <name>$width</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="1006">
+          <name>$height</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="1006">
+          <name>$bgColour</name>
+          <default>"000000"</default>
+          <type/>
+        </argument>
+        <argument line="1006">
+          <name>$bgAlpha</name>
+          <default>0</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1109" package="ImageLite">
+        <name>resize</name>
+        <full_name>resize</full_name>
+        <docblock line="1098">
+          <description>Set width/height for standard resize</description>
+          <long-description></long-description>
+          <tag line="1098" name="param" description="Max width." type="integer|null" variable="$width">
+            <type by_reference="false">integer</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1098" name="param" description="Max height" type="integer|null" variable="$height">
+            <type by_reference="false">integer</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1098" name="example" description="resize(250); &lt;br /&gt;Resize to the max width."/>
+          <tag line="1098" name="example" description="resize(null, 300); &lt;br /&gt;Resize to the max height."/>
+          <tag line="1098" name="example" description="resize(250, 300); &lt;br /&gt;Resize to fit within height and width."/>
+          <tag line="1098" name="example" description="aspectRatio(false)-&gt;resize(250); &lt;br /&gt;Disregard aspect ratio and resize to max width."/>
+          <tag line="1098" name="example" description="aspectRatio(false)-&gt;resize(null, 300); &lt;br /&gt;Disregard aspect ratio and resize to max height."/>
+          <tag line="1098" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="1109">
+          <name>$width</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="1109">
+          <name>$height</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="1197" package="ImageLite">
+        <name>preserveAlphaTransparency</name>
+        <full_name>preserveAlphaTransparency</full_name>
+        <docblock line="1193">
+          <description>Preserve alpha transparency</description>
+          <long-description></long-description>
+          <tag line="1193" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1221" package="ImageLite">
+        <name>save</name>
+        <full_name>save</full_name>
+        <docblock line="1212">
+          <description>Save resized image</description>
+          <long-description></long-description>
+          <tag line="1212" name="param" description="Path to a custom destination file (if populated this is used instead of the cache path)" type="string|null" variable="$customDestinationFilePath">
+            <type by_reference="false">string</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1212" name="param" description="Create the custom directory path of $customDestinationFilePath if missing" type="boolean" variable="$createPath">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="1212" name="example" description="save(); &lt;br /&gt;Image is resized and stored in the cache."/>
+          <tag line="1212" name="example" description="save(&quot;./new/image.jpg&quot;); &lt;br /&gt;Image is resized and stored in a custom destination."/>
+          <tag line="1212" name="example" description="save(&quot;./new/path/image.jpg&quot;, true); &lt;br /&gt;The path (./new/path/) is created (if missing), image is resized and then stored in the custom destination."/>
+          <tag line="1212" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="1221">
+          <name>$customDestinationFilePath</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="1221">
+          <name>$createPath</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1375" package="ImageLite">
+        <name>getUri</name>
+        <full_name>getUri</full_name>
+        <docblock line="1371">
+          <description>Get image URI</description>
+          <long-description></long-description>
+          <tag line="1371" name="return" description="URI" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="ImageLite" full_name="ImageLite"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="2">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
