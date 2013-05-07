@@ -104,6 +104,8 @@
  * @package ImageLite
  * @version 1.0.0
  * @license GPL
+ * @link https://github.com/mirrorpixel/ImageLite Git Repository
+ * @link http://mirrorpixel.github.io/ImageLite/classes/ImageLite.html Documentation
  * @link http://php.net/manual/en/function.imageconvolution.php Image sharpening uses imageconvolution (available in PHP 5.1+ only)
  * @todo Unit tests
  */
