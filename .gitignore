@@ -9,12 +9,11 @@
 
 # Custom #
 ##########
-cache
-/examples/build
-docs/*
-!docs/createDocumentation.*
-/units/reports
-
+examples/cache
+examples/custom
+build/*report
+build/data.*
+documentation
 
 # Compiled source #
 ###################

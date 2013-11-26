@@ -1,111 +1,100 @@
 <?php
 
 /**
- * <h4>A light-weight PHP image resizer with dynamic caching.</h4>
+ * A light-weight PHP image resizer with dynamic caching.
  *
  * @license GPL
  * @package	ImageLite
  */
 
 /**
- * <h4>A light-weight PHP image resizer with dynamic caching.</h4>
+ * A light-weight PHP image resizer with dynamic caching.
  *
- * <p>A simple solution to fulfil the most common image resizing tasks with <a href="http://php.net/manual/en/book.image.php" target="_blank">GD</a>.</p>
+ * A simple solution to fulfil the most common image resizing tasks with [GD](http://php.net/manual/en/book.image.php).
  *
- * <h2>Features</h2>
- * <ul>
- *	<li><strong>Supported Image Types</strong>
- *		<ul>
- *			<li>JPEG</li>
- *			<li>GIF + Transparency</li>
- *			<li>PNG + Transparency</li>
- *		</ul>
- *  </li>
- *	<li><strong>Resize</strong>
- *		<ul>
- *			<li>Standard/Proportional</li>
- *			<li>Crop-to-fit</li>
- *			<li>Letterbox</li>
- *			<li>Percentage</li>
- *		</ul>
- *  </li>
- *	<li><strong>Manipulation</strong>
- *		<ul>
- *			<li>Sharpen</li>
- *			<li>Rotate</li>
- *			<li>Aspect Ratio toggle</li>
- *			<li>Contrain dimensions</li>
- *			<li>Quality/Compression</li>
- *		</ul>
- *  </li>
- *	<li><strong>File Saving</strong>
- *		<ul>
- *			<li>Custom destination path</li>
- *			<li>Automated cache with custom expiration setting</li>
- *		</ul>
- *  </li>
- * </ul>
+ * ##Features
  *
- * <h2>Example 1:</h2>
- * <p>Resize and save an image to a specfic location.</p>
- * <code>
- *	try {
- *		include_once("imagelite.class.php");
+ * __Supported Image Types__
  *
- *		$srcUri = ImageLite::inst("./src.jpg")->sharpen(7)->resize(100,200)->save("./new.jpg")->getUri();
+ * * JPEG.
+ * * GIF + Transparency.
+ * * PNG + Transparency.
  *
- *		echo "&lt;img src='{$srcUri}' /&gt;";
- *	}
- *	catch (Exception $e) {
- *		echo $e->getMessage();
- *	}
- * </code>
+ * __Resize__
  *
- * <h2>Example 2:</h2>
- * <p>Resize an image and store it in the cache.</p>
- * <code>
- *	try {
- *		include_once("imagelite.class.php");
+ * * Standard/Proportional.
+ * * Crop-to-fit.
+ * * Letterbox.
+ * * Percentage.
  *
- *		ImageLite::setCacheRootDirectory("/path/to/images/cache/directory", true);
+ * __Manipulation__
  *
- *		$img = ImageLite::inst("/path/to/src/image.jpg")->quality(70)->resize(100,200)->save();
+ * * Sharpen.
+ * * Rotate.
+ * * Aspect Ratio toggle.
+ * * Constrain dimensions.
+ * * Quality/Compression.
  *
- *		echo "&lt;img src='". $img->getUri() ."' /&gt;";
- *	}
- *	catch (Exception $e) {
- *		echo $e->getMessage();
- *	}
- * </code>
+ * __File Saving__
  *
- * <h2>Example 3:</h2>
- * <p>Resize an image and store it in the cache (note that chaining is not used).</p>
- * <code>
- *	try {
- *		include_once("imagelite.class.php");
+ * * Custom destination paths.
+ * * Automated file caching with custom expiration.
  *
- *		ImageLite::setCacheRootDirectory("/path/to/cache/directory", true);
- *		ImageLite::setMode(0777); 
- *		ImageLite::setCacheUri("/assets/cache/");
+ * ##Examples
  *
- *		$img = ImageLite::inst("/path/to/original/image.jpg");
- *		$img->quality(70);
- *		$img->aspectRatio(false);
- *		$img->sharpen(8);
- *		$img->resize(100,200);
- *		$img->save();
- *		echo "&lt;img src='". $img->getUri() ."' /&gt;";
- *	}
- *	catch (Exception $e) {
- *		echo $e->getMessage();
- *	}
- * </code>
+ * ####Resize and save an image to a specific location.
+ *
+ *		try {
+ *			include_once('imagelite.class.php');
+ *			$srcUri = ImageLite::inst('./src.jpg')->sharpen(7)->resize(100,200)->save('./new.jpg')->getUri();
+ *			echo "<img src='{$srcUri}' />";
+ *		}
+ *		catch (Exception $e) {
+ *			echo $e->getMessage();
+ *		}
+ *
+ * ####Resize an image and store it in the cache.
+ *
+ *		try {
+ *			include_once('imagelite.class.php');
+ *
+ *			ImageLite::setCacheRootDirectory('/path/to/images/cache/directory', true);
+ *
+ *			$imgURI = ImageLite::inst('/path/to/src/image.jpg')->quality(70)->resize(100,200)->save()->getUri();
+ *
+ *			echo "<img src='". $imgURI ."' />";
+ *		}
+ *		catch (Exception $e) {
+ *			echo $e->getMessage();
+ *		}
+ *
+ * ####A slightly more advanced method of resizing images.
+ *
+ * __Note__: Object chaining is not used in this example.
+ *
+ *		try {
+ *			include_once('imagelite.class.php');
+ *
+ *			ImageLite::setCacheRootDirectory('/path/to/cache/directory', true);
+ *			ImageLite::setMode(0777); 
+ *			ImageLite::setCacheUri('/assets/cache/');
+ *
+ *			$img = ImageLite::inst('/path/to/original/image.jpg');
+ *			$img->quality(70);
+ *			$img->aspectRatio(false);
+ *			$img->sharpen(8);
+ *			$img->resize(100,200);
+ *			$img->save();
+ *			echo "<img src='". $img->getUri() ."' />";
+ *		}
+ *		catch (Exception $e) {
+ *			echo $e->getMessage();
+ *		}
  *
  * @package ImageLite
- * @version 1.0.0
  * @license GPL
+ * @version 1.0.0 
  * @link https://github.com/mirrorpixel/ImageLite Git Repository
- * @link http://mirrorpixel.github.io/ImageLite/classes/ImageLite.html Documentation
  * @link http://php.net/manual/en/function.imageconvolution.php Image sharpening uses imageconvolution (available in PHP 5.1+ only)
  * @todo Unit tests
  */
@@ -113,7 +102,8 @@ class ImageLite {
 
 
 	/**
-	 * Array of instances for each image object
+	 * Array of instances for each image object.
+	 *
 	 * @var array
 	 * @access protected
 	 */
@@ -121,44 +111,58 @@ class ImageLite {
 
 
 	/**
-	 * Path to the root directory of the cache
+	 * Path to the root directory of the cache.
+	 *
+	 * __Example__
+	 *
+	 *		'/home/website/public_html/assets/cache/'
+	 *
 	 * @var string
-	 * @example /home/website/public_html/assets/cache
 	 * @access protected
 	 */
 	protected static $cacheRootDir = null;
 
 
 	/**
-	 * Absolute/relative URI path to the cache
+	 * Absolute/relative URI path to the cache.
+	 *
+	 * __Example__
+	 *
+	 *		'/assets/cached-images/'
+	 *
 	 * @var string
-	 * @example /assets/cache
 	 * @access protected
 	 */
 	protected static $cacheUri = null;
 
 
 	/**
-	 * Path to the document root directory
+	 * Path to the document root directory.
+	 *
+	 * __Examples__
+	 *
+	 *		'/home/website/public_html/'
+	 *		'/home/website/public_html/subsite/'
+	 *
 	 * @var string
-	 * @example /home/website/public_html
 	 * @access protected
 	 */
 	protected static $documentRoot = null;
 
 
 	/**
-	 * Lifetime of a cached image
+	 * Lifetime of a cached image.
+	 *
 	 * @var string
-	 * @link http://www.php.net/manual/en/datetime.formats.relative.php Value is used with strtotime()
-	 * @example "-4 months"
+	 * @link http://www.php.net/manual/en/datetime.formats.relative.php Accepts strtotime() values only.
 	 * @access protected
 	 */
 	protected static $imgLifetime = null;
 
 
 	/**
-	 * Default mode for directories and files
+	 * Default mode for directories and files.
+	 *
 	 * @var integer An octal number
 	 * @access protected
 	 */
@@ -166,7 +170,8 @@ class ImageLite {
 
 
 	/**
-	 * Source image file path
+	 * Source image file path.
+	 *
 	 * @var string
 	 * @access protected
 	 */
@@ -174,26 +179,27 @@ class ImageLite {
 
 
 	/**
-	 * The type of resize to perform
-	 * @example standard
-	 * @example crop-to-fit
-	 * @example letterbox
-	 * @example percent
-	 * @var boolean
+	 * The type of resize to perform.
+	 *
+	 * Valid values: `standard`, `crop-to-fit`, `letterbox` and `percent`.
+	 *
+	 * @var string
 	 * @access protected
 	 */
-	protected $resizeType = "standard";
+	protected $resizeType = 'standard';
 
 
 	/**
-	 * Resource for source image
+	 * Resource for source image.
+	 *
 	 * @var resource
 	 * @access protected
 	 */
 	protected $srcImg = null;
 
 	/**
-	 * Resource for destination image
+	 * Resource for destination image.
+	 *
 	 * @var resource
 	 * @access protected
 	 */
@@ -201,7 +207,8 @@ class ImageLite {
 
 
 	/**
-	 * The width of the source image
+	 * The width of the source image.
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -209,7 +216,8 @@ class ImageLite {
 
 
 	/**
-	 * The height of the source image
+	 * The height of the source image.
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -217,7 +225,8 @@ class ImageLite {
 
 
 	/**
-	 * The max width of the new image
+	 * The max width of the new image.
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -225,7 +234,8 @@ class ImageLite {
 
 
 	/**
-	 * The max height of the new image
+	 * The max height of the new image.
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -233,7 +243,8 @@ class ImageLite {
 
 
 	/**
-	 * The calculated width for the destination image
+	 * The calculated width for the destination image.
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -241,7 +252,8 @@ class ImageLite {
 
 
 	/**
-	 * The calculated height for the destination image
+	 * The calculated height for the destination image.
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -249,7 +261,8 @@ class ImageLite {
 
 
 	/**
-	 * X-coordinate of destination point
+	 * X-coordinate of destination point.
+	 *
 	 * @link http://php.net/manual/en/function.imagecopyresampled.php See imagecopyresampled()
 	 * @var integer
 	 * @access protected
@@ -258,7 +271,8 @@ class ImageLite {
 
 
 	/**
-	 * Y-coordinate of destination point
+	 * Y-coordinate of destination point.
+	 *
 	 * @link http://php.net/manual/en/function.imagecopyresampled.php See imagecopyresampled()
 	 * @var integer
 	 * @access protected
@@ -276,7 +290,8 @@ class ImageLite {
 
 
 	/**
-	 * Y-coordinate of source point
+	 * Y-coordinate of source point.
+	 *
 	 * @link http://php.net/manual/en/function.imagecopyresampled.php See imagecopyresampled()
 	 * @var integer
 	 * @access protected
@@ -285,9 +300,10 @@ class ImageLite {
 
 
 	/**
-	 * Image type
+	 * Image type.
 	 *
-	 * ie. gif, jpg or png
+	 * Valid values: `'gif'`, `'jpg'` and `'png'`.
+	 *
 	 * @var string
 	 * @access protected
 	 */
@@ -295,7 +311,10 @@ class ImageLite {
 
 
 	/**
-	 * The status of whether the aspect ratio of the image should be maintained
+	 * Maintain aspect ratio. 
+	 *
+	 * The status of whether the aspect ratio of the image should be maintained.
+	 *
 	 * @var boolean
 	 * @access protected
 	 */
@@ -303,9 +322,10 @@ class ImageLite {
 
 
 	/**
-	 * Quality of the image when resized
+	 * Image quality/compression.
 	 *
-	 * Range: 0 (worst quality/small file size) to 100 (best quality/large file size)
+	 * Range: `0` (worst quality/small file size) to `100` (best quality/large file size).
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -313,9 +333,12 @@ class ImageLite {
 
 
 	/**
-	 * The angle in degrees in which to rotate an image
+	 * Image rotation.
 	 *
-	 * Range: 0 degrees to 359 degrees (support for -270, -180, -90, 0, 90, 180, 270)
+	 * Range: `0` degrees to `359` degrees.
+	 *
+	 * Support limited to `-270`, `-180`, `-90`, `0`, `90`, `180` and `270`.
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -323,9 +346,10 @@ class ImageLite {
 
 
 	/**
-	 * The level of sharpening that should be applied to an image
+	 * Image sharpening.
 	 *
-	 * Range: 0 (no sharpening) to 100 (maximum sharpening)
+	 * Range: `0` (no sharpening) to `100` (maximum sharpening).
+	 *
 	 * @var integer
 	 * @access protected
 	 */
@@ -333,7 +357,10 @@ class ImageLite {
 
 
 	/**
-	 * Contrain the re-sizing of an image to it's original dimensions
+	 * Constrain image dimensions.
+	 *
+	 * Constrain the re-sizing of an image to it's original dimensions.
+	 *
 	 * @var boolean
 	 * @access protected
 	 */
@@ -341,7 +368,10 @@ class ImageLite {
 
 
 	/**
-	 * Save resized image to this custom file path rather than the cache
+	 * Custom file destination.
+	 *
+	 * Save resized image to this custom file path rather than the cache.
+	 *
 	 * @var boolean
 	 * @access protected
 	 */
@@ -350,12 +380,14 @@ class ImageLite {
 
 	/**
 	 * Constructor
-	 * @param string $filePath Path to the image file
+	 *
+	 * @param string $filePath Path to the image file.
+	 * @throws RuntimeException If GD is not enabled on the server.
 	 */
 	public function __construct($filePath = null)
 	{
 		// Throw an exception if GD is not installed
-		if (!extension_loaded("gd"))
+		if (!extension_loaded('gd'))
 		{
 			throw new RuntimeException("GD is not enabled on your server (see: http://www.php.net/manual/en/book.image.php)");
 		}
@@ -365,9 +397,13 @@ class ImageLite {
 
 
 	/**
-	 * Get an instance
-	 * @param string $filePath The path to the image file
+	 * Get an instance.
+	 *
+	 * The image instance is created in the constructor using `setFilePath()`.
+	 *
+	 * @param string $filePath The path to the image file.
 	 * @return object
+	 * @see ImageLite::setFilePath()
 	 */
 	public static function getInstance($filePath = null)
 	{
@@ -381,8 +417,9 @@ class ImageLite {
 
 
 	/**
-	 * Shorthand alias for getInstance()
-	 * @param string $filePath The path to the image file
+	 * Shorthand alias for getInstance().
+	 *
+	 * @param string $filePath The path to the image file.
 	 * @return object
 	 */
 	public static function inst($filePath = null)
@@ -392,9 +429,10 @@ class ImageLite {
 
 
 	/**
-	 * Print/output debug information
+	 * Print/output debug information.
 	 *
 	 * This is for developer purposes only. Call this method to output helpful information during development.
+	 *
 	 * @return void
 	 */
 	public function debug()
@@ -403,12 +441,12 @@ class ImageLite {
 		echo "	<legend>Debug: Object Variables</legend>\r\n";
 		var_dump(get_class_vars(__CLASS__));
 
-		if (function_exists("debug_backtrace"))
+		if (function_exists('debug_backtrace'))
 		{
 			$trace = debug_backtrace();
-			if (isset($trace[1]["function"]))
+			if (isset($trace[1]['function']))
 			{
-				echo "<p>Previous method call: <strong>". $trace[1]["class"] . "::". $trace[1]["function"] ." - Line: ". $trace[1]["line"] ."</strong></p>";
+				echo "<p>Previous method call: <strong>". $trace[1]['class'] . "::". $trace[1]['function'] ." - Line: ". $trace[1]['line'] ."</strong></p>";
 			}
 		}
 		echo "getCacheDestinationDirectoryPath(): " . $this->getCacheDestinationDirectoryPath() . "<br />\r\n";
@@ -419,15 +457,26 @@ class ImageLite {
 
 
 	/**
-	 * Get bytes from shorthand byte notation
+	 * Get bytes from shorthand byte notation.
 	 *
-	 * If a suffix is not found, then the original value is returned
+	 * If a suffix is not found, then the original value is returned.
+	 *
+	 * __Examples__
+	 *
+	 *		// Returns 1073741824 bytes
+	 *		$this->getBytes('1G');
+	 *
+	 *		// Returns 1048576 bytes
+	 *		$this->getBytes('1M');
+	 *
+	 *		// Returns 1024 bytes
+	 *		$this->getBytes('1K');
+	 *
+	 *		// Returns 1024 bytes
+	 *		$this->getBytes('1024');
+	 *
 	 * @see http://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes
-	 * @example getBytes("1G"); <br /> Returns: 1073741824
-	 * @example getBytes("1M"); <br /> Returns: 1048576
-	 * @example getBytes("1K"); <br /> Returns: 1024
-	 * @example getBytes("1024"); <br /> Returns: 1024
-	 * @param string|integer $val A number followed by a suffix of 'G' (Gig), 'M' (Megabytes) or 'K' (Kilobytes)
+	 * @param string|integer $val An integer followed by a suffix of `G` (Gig), `M` (Megabyte) or `K` (Kilobyte).
 	 * @return integer
 	 */
 	protected function getBytes($val)
@@ -448,18 +497,22 @@ class ImageLite {
 
 
 	/**
-	 * Get a memory exhausted message
+	 * Get a memory exhausted message.
 	 *
-	 * Based on the width/height of the source image and the current memory limit we must estimate
+	 * Based on the width & height of the source image and the current memory limit this method _estimates_
 	 * how much memory will be required to resize the image without exhausting the memory.
-	 * ie. Prevent an error such as "Fatal error: Allowed memory size of 76532345 bytes exhausted (tried to allocate 345 bytes) in page.php
-	 * @param string $filePath A file path can be added to the message (optional)
-	 * @return boolean|string String: Memory will potentially be exhausted. False: Memory will not be exhausted.
+	 *
+	 * __Prevention__
+	 *
+	 * The aim is to prevent the common fatal error message such as `Fatal error: Allowed memory size of 76532345 bytes exhausted (tried to allocate 345 bytes)`.
+	 *
+	 * @param string $filePath A file path can be added to the message (optional).
+	 * @return boolean|string `string`: Memory could be exhausted. `false`: Memory will not be exhausted.
 	 */
 	protected function getMemoryExhaustedMsg($filePath = null)
 	{
 		// Obtain the memory limit in bytes
-		$memLimit = $this->getBytes(ini_get("memory_limit"));
+		$memLimit = $this->getBytes(ini_get('memory_limit'));
 
 		// Obtain the maximum x/y dimension for a square image that would not exhaust the memory limit.
 		// We divide by 4 to account for each pixel with a value for red, green, blue and an alpha channel.
@@ -481,27 +534,36 @@ class ImageLite {
 			$error = array();
 			if (!empty($filePath))
 			{
-				$error[] = "Image File: " . $filePath;
+				$error[] = 'Image File: ' . $filePath;
 			}
-			$error[] = "Current memory limit: " . ini_get("memory_limit");
-			$error[] = "Current memory limit could process a ". $recommendedXY ."x". $recommendedXY ." square image safely";
-			$error[] = "Estimated required memory limit: " . $memStart ."M to ". $memEnd . "M";
-			$error[] = "Estimated required memory limit could process a ". $currentXY ."x". $currentXY ." square image safely, or in this case ". $this->srcWidth . "x". $this->srcHeight;
-			$error[] = "Avoid a memory exhausted fatal error by using ini_set(\"memory_limit\", \"". $memEnd ."M\");";
+			$error[] = 'Current memory limit: ' . ini_get('memory_limit');
+			$error[] = 'Current memory limit could process a '. $recommendedXY .'x'. $recommendedXY .' square image safely';
+			$error[] = 'Estimated required memory limit: ' . $memStart .'M to '. $memEnd . 'M';
+			$error[] = 'Estimated required memory limit could process a '. $currentXY .'x'. $currentXY .' square image safely, or in this case '. $this->srcWidth . 'x'. $this->srcHeight;
+			$error[] = 'Avoid a memory exhausted fatal error by using ini_set(\'memory_limit\', \''. $memEnd .'M\');';
 
-			return implode("\r\n<br />", $error);
+			return implode('\r\n<br />', $error);
 		}
 		return false;
 	}
 
 
 	/**
-	 * Set cache directory
-	 * @param string $path Path to the root cache directory
-	 * @param string $create Create the directory
-	 * @example setCacheRootDirectory("/home/website/public_html/assets/cache");
-	 * @example setCacheRootDirectory("../assets/cache");
-	 * @example setCacheRootDirectory("/home/website/public_html/assets/cache", true); <br />Create the directory path if not found and if 2nd argument is TRUE
+	 * Set cache directory.
+	 *
+	 * __Examples__
+	 *
+	 *		// Set absolute path to cache root directory.
+	 *		ImageLite::setCacheRootDirectory('/home/website/public_html/assets/cache');
+	 *
+	 *		// Set relative path to cache root directory.
+	 *		ImageLite::setCacheRootDirectory('../assets/cache');
+	 *
+	 *		// Create directory path if it doesn't exist then set it.
+	 *		ImageLite::setCacheRootDirectory('/home/website/public_html/assets/cache', true);
+	 *
+	 * @param string $path Path to the root cache directory.
+	 * @param string $create Create the directory. Default is `false`.
 	 * @return void
 	 */
 	public static function setCacheRootDirectory($path = null, $create = false)
@@ -533,7 +595,8 @@ class ImageLite {
 
 
 	/**
-	 * Get cache directory
+	 * Get cache directory.
+	 *
 	 * @return string
 	 */
 	public static function getCacheRootDirectory()
@@ -543,18 +606,25 @@ class ImageLite {
 
 
 	/**
-	 * Set cache URI (optional)
-	 * @param string $path URI path to the root cache directory
-	 * @example setCacheRootUri("/cache/"); <br />Absolute URI path to cache.
-	 * @example setCacheRootUri("assets/cache"); <br />Relative URI path to cache.
+	 * Set cache URI (optional).
+	 *
+	 * __Examples__
+	 *
+	 *		// Absolute URI path to cache.
+	 *		ImageLite::setCacheRootUri('/cache/');
+	 *
+	 *		// Relative URI path to cache.
+	 *		ImageLite::setCacheRootUri('assets/cache');
+	 *
+	 * @param string $path URI path to the root cache directory.
 	 * @return void
 	 */
 	public static function setCacheUri($path)
 	{
-		$path = rtrim(trim($path), "/");
+		$path = rtrim(trim($path), '/');
 		if (!empty($path))
 		{
-			self::$cacheUri = $path . "/";
+			self::$cacheUri = $path . '/';
 		}
 		else
 		{
@@ -564,7 +634,8 @@ class ImageLite {
 
 
 	/**
-	 * Get cache URI
+	 * Get cache URI.
+	 *
 	 * @return string
 	 */
 	public static function getCacheUri()
@@ -574,11 +645,20 @@ class ImageLite {
 
 
 	/**
-	 * Set document root (optional)
-	 * @param string $path Path to document root directory. Default: $_SERVER["DOCUMENT_ROOT"].
-	 * @example setDocumentRoot("/home/website/public_html");
-	 * @example setDocumentRoot("/home/website/public_html/subsite/");
-	 * @example setDocumentRoot("../../public_html");
+	 * Set document root (optional).
+	 *
+	 * If this method is not called then the default document root is taken from `$_SERVER['DOCUMENT_ROOT']`.
+	 *
+	 * __Examples__
+	 *
+	 *		// Absolute path to document root.
+	 *		ImageLite::setDocumentRoot('/home/website/public_html');
+	 *		ImageLite::setDocumentRoot('/home/website/public_html/subsite/');
+	 *
+	 *		// Relative path to document root.
+	 *		ImageLite::setDocumentRoot('../../public_html');
+	 *
+	 * @param string $path Path to document root directory.
 	 * @return void
 	 */
 	public static function setDocumentRoot($path = null)
@@ -593,14 +673,14 @@ class ImageLite {
 		}
 		else
 		{
-			throw new Exception(__METHOD__."(): Document Root directory does not exist: \"$path\"");
+			throw new Exception(__METHOD__."(): Document Root directory does not exist: '$path'");
 		}
 	}
 
 
 	/**
-	 * Get document root
-	 * @access protected
+	 * Get document root.
+	 *
 	 * @return string
 	 */
 	public static function getDocumentRoot()
@@ -608,19 +688,28 @@ class ImageLite {
 		if (empty(self::$documentRoot))
 		{
 			// Set absolute path for use with string comparison when generating the URI
-			self::$documentRoot = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR;
+			self::$documentRoot = realpath($_SERVER['DOCUMENT_ROOT']) . DIRECTORY_SEPARATOR;
 		}
 		return self::$documentRoot;
 	}
 
 
 	/**
-	 * Set image expiration lifetime
-	 * @param string $lifetime A time period set as a negative (eg. -3 months)
-	 * @example setLifetime(null); <br />Image will never expire (default)
-	 * @example setLifetime("-1 month"); <br />Creates a new image after 1 month
-	 * @example setLifetime("-30 seconds"); <br />Creates a new image after 30 seconds
-	 * @link http://www.php.net/manual/en/datetime.formats.relative.php Preferred format for $lifetime
+	 * Set image expiration lifetime.
+	 *
+	 * __Examples__
+	 *
+	 *		// Image will never expire (default).
+	 *		ImageLite::setLifetime(null);
+	 *
+	 *		// Image expires after 1 month.
+	 *		ImageLite::setLifetime('-1 month');
+	 *
+	 *		// Image expires in 30 seconds.
+	 *		ImageLite::setLifetime('-30 seconds');
+	 *
+	 * @param string $lifetime A time period set as a negative (eg. `'-3 months'`).
+	 * @link http://www.php.net/manual/en/datetime.formats.relative.php Preferred format for $lifetime.
 	 * @return void
 	 */
 	public static function setLifetime($lifetime)
@@ -630,15 +719,26 @@ class ImageLite {
 
 
 	/**
-	 * Set mode permissions
+	 * Set mode permissions.
 	 *
-	 * The mode set by this method will be applied to directories and images that are automatically created
+	 * This mode is applied to all directories and images that are auto-generated.
+	 *
+	 * __Examples__
+	 *
+	 *		// Read and write for owner, nothing for everybody else.
+	 *		ImageLite::setMode(0600);
+	 *
+	 *		// Read and write for owner, read for everybody else.
+	 *		ImageLite::setMode(0644);
+	 *
+	 *		// Everything for owner, read and execute for others.
+	 *		ImageLite::setMode(0755); // Default.
+	 *
+	 *		// Everything for owner, read and execute for owner's group.
+	 *		ImageLite::setMode(0750);
+	 *
 	 * @param integer $mode An octal integer
-	 * @example setMode(0600); <br />Read and write for owner, nothing for everybody else
-	 * @example setMode(0644); <br />Read and write for owner, read for everybody else
-	 * @example setMode(0755); <br />Everything for owner, read and execute for others
-	 * @example setMode(0750); <br />Everything for owner, read and execute for owner's group
-	 * @link http://php.net/manual/en/function.chmod.php chmod
+	 * @link http://php.net/manual/en/function.chmod.php See chmod() for more info.
 	 * @return void
 	 */
 	public static function setMode($mode)
@@ -648,10 +748,21 @@ class ImageLite {
 
 
 	/**
-	 * Create a directory path
-	 * @param string $path Path to the directory
-	 * @param boolean $hasFilename Set as true to ignore a filename in the path
+	 * Create a directory path.
+	 *
+	 * __Examples__
+	 * 
+	 *		// Create directory /home/project/new-dir/
+	 *		self::createDirectory('/home/project/new-dir');
+	 *
+	 *		// Create directory /home/project/new-dir/
+	 *		self::createDirectory('/home/project/new-dir/filename.jpg', true);
+	 *
+	 * @param string $path Path to the directory.
+	 * @param boolean $hasFilename Set as true to ignore a filename in the path.
 	 * @return void
+	 * @throws Exception If unable to create directory path.
+	 * @throws RuntimeException If path is not writeable or mode/permissions could not be changed.
 	 */
 	protected static function createDirectory($path, $hasFilename = false)
 	{
@@ -685,9 +796,14 @@ class ImageLite {
 
 
 	/**
-	 * Set the path to the image file
-	 * @param string $filePath The path to the image file
+	 * Set the path to the image file.
+	 *
+	 * @param string $filePath The path to the image file.
 	 * @return void
+	 * @throws InvalidArgumentException If `$filePath` is empty.
+	 * @throws Exception If file does not exist.
+	 * @throws Exception If file is not readable.
+	 * @throws UnexpectedValueException If image is not a valid image format.
 	 */
 	protected function setFilePath($filePath)
 	{
@@ -720,7 +836,12 @@ class ImageLite {
 
 
 	/**
-	 * Get destination directory path
+	 * Get cache destination directory path.
+	 *
+	 * __Example__
+	 *
+	 * `160/200/100/56/q75-r0-s0-c/`
+	 *
 	 * @return string
 	 */
 	public function getCacheDestinationDirectoryPath()
@@ -734,26 +855,38 @@ class ImageLite {
 				DIRECTORY_SEPARATOR .
 				ord($sha[1]) .
 				DIRECTORY_SEPARATOR .
-				"q". $this->quality .
-				"-r". $this->rotation .
-				"-s". $this->sharpen .
-				"-c". $this->constrain .
+				'q'. $this->quality .
+				'-r'. $this->rotation .
+				'-s'. $this->sharpen .
+				'-c'. $this->constrain .
 				DIRECTORY_SEPARATOR;
 	}
 
 
 	/**
-	 * Get destination filename
+	 * Get cache destination filename.
+	 *
+	 * __Example__
+	 *
+	 * `f410e0466ae4b065bfa4d9010ad6056864ed4e50_d8c58f30bbe1daadb7a6a270485aaf0f1ca5efe0.jpg`
+	 *
 	 * @return string
 	 */
 	public function getCacheDestinationFilename()
 	{
-		return sha1($this->resizeType) . "_". sha1($this->srcFilePath) . "." . $this->imageType;
+		return sha1($this->resizeType) .'_'. sha1($this->srcFilePath) . '.' . $this->imageType;
 	}
 
 
 	/**
-	 * Get destination file path
+	 * Get cache destination file path.
+	 *
+	 * A concatenation of `getCacheDestinationDirectoryPath()` and `getCacheDestinationFilename()`.
+	 *
+	 * __Example__
+	 *
+	 * `160/200/100/56/q75-r0-s0-c/f410e0466ae4b065bfa4d9010ad6056864ed4e50_d8c58f30bbe1daadb7a6a270485aaf0f1ca5efe0.jpg`
+	 *
 	 * @return string
 	 */
 	public function getCacheDestinationFilePath()
@@ -763,10 +896,17 @@ class ImageLite {
 
 
 	/**
-	 * Set aspect ratio status
-	 * @param boolean $keep Set as TRUE or FALSE
-	 * @example aspectRatio(true); <br />Keep the aspect ratio
-	 * @example aspectRatio(false); <br />Ignore the aspect ratio and fulfil the exact maximum dimensions
+	 * Set aspect ratio status.
+	 *
+	 * __Examples__
+	 *
+	 *		// Keep the aspect ratio.
+	 *		ImageLite::inst('./src.jpg')->aspectRatio(true)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 *		// Ignore the aspect ratio and fulfil the exact maximum dimensions.
+	 *		ImageLite::inst('./src.jpg')->aspectRatio(false)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 * @param boolean $keep Default is `true`.
 	 * @return object
 	 */
 	public function aspectRatio($keep)
@@ -777,8 +917,17 @@ class ImageLite {
 
 
 	/**
-	 * Set quality (compression) level
-	 * @param integer $level Range from 0 (worst quality) to 100 (best quality). Default is 75.
+	 * Set quality (compression) level.
+	 *
+	 * __Examples__
+	 *
+	 *		// Worst quality with highest compression for a smaller file size.
+	 *		ImageLite::inst('./src.jpg')->quality(0)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 *		// Highest quality with a lower compression for a larger file size.
+	 *		ImageLite::inst('./src.jpg')->quality(100)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 * @param integer $level Range from `0` (worst quality) to `100` (best quality). Default is `75`.
 	 * @return object
 	 */
 	public function quality($level)
@@ -790,8 +939,17 @@ class ImageLite {
 
 
 	/**
-	 * Set sharpening level
-	 * @param integer $level Range from 0 (no sharpening) to 100 (maximum sharpening). Default is 0.
+	 * Set sharpening level.
+	 *
+	 * __Examples__
+	 *
+	 *		// No sharpening.
+	 *		ImageLite::inst('./src.jpg')->sharpen(0)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 *		// Maximum sharpening.
+	 *		ImageLite::inst('./src.jpg')->sharpen(100)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 * @param integer $level Range from `0` (no sharpening) to `100` (maximum sharpening). Default is `0`.
 	 * @return object
 	 */
 	public function sharpen($level)
@@ -803,10 +961,17 @@ class ImageLite {
 
 
 	/**
-	 * Set dimension constraint
-	 * @param boolean $status Set as TRUE or FALSE. Default is TRUE.
-	 * @example contrain(true); <br />Do not allow the image to be enlarged beyond its original dimensions.
-	 * @example contrain(false); <br />Allow the image to be enlarged beyond its original dimensions.
+	 * Set dimension constraint.
+	 *
+	 * __Examples__
+	 *
+	 *		// Image will not be enlarged beyond its original dimensions.
+	 *		ImageLite::inst('./src.jpg')->constrain(true)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 *		// Image can be enlarged beyond its original dimensions.
+	 *		ImageLite::inst('./src.jpg')->constrain(false)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 * @param boolean $status Default is `true`.
 	 * @return object
 	 */
 	public function constrain($status)
@@ -817,9 +982,18 @@ class ImageLite {
 
 
 	/**
-	 * Set rotation angle in degrees
+	 * Set rotation angle in degrees.
+	 *
+	 * __Examples__
+	 *
+	 *		// Rotate image 90 degrees clockwise.
+	 *		ImageLite::inst('./src.jpg')->rotate(90)->resize(200)->save('./new.jpg')->getUri();
+	 *
+	 *		// Rotate image 90 degrees counter-clockwise.
+	 *		ImageLite::inst('./src.jpg')->rotate(-90)->resize(200)->save('./new.jpg')->getUri();
+	 *
 	 * @todo Potentially allow for degrees other than -90, -180, -270, 90, 180 and 270
-	 * @param integer $angle The angle in degrees including negative numbers (eg. -90, 90, 180, 270). Default is 0 (no rotation).
+	 * @param integer $angle Angle in degrees (`-90`, `-180`, `-270`, `90`, `180` or `270`). Default is `0` (no rotation).
 	 * @return object
 	 */
 	public function rotate($angle)
@@ -831,9 +1005,10 @@ class ImageLite {
 
 
 	/**
-	 * Has cached image expired
+	 * Has cached image expired.
+	 *
 	 * @param string $filePath
-	 * @return boolean TRUE (Yes, file has expired) or FALSE (No, file has not expired)
+	 * @return boolean
 	 */
 	protected function hasExpired($filePath)
 	{
@@ -849,7 +1024,10 @@ class ImageLite {
 
 
 	/**
-	 * Set basic image information
+	 * Set basic image information.
+	 *
+	 * Obtain important details about the image such as width, height and file format for internal use.
+	 *
 	 * @param string $filePath
 	 * @return boolean
 	 */
@@ -873,9 +1051,9 @@ class ImageLite {
 
 				switch ($info[2])
 				{
-					case 1: $this->imageType = "gif"; break;
-					case 2: $this->imageType = "jpg"; break;
-					case 3: $this->imageType = "png"; break;
+					case 1: $this->imageType = 'gif'; break;
+					case 2: $this->imageType = 'jpg'; break;
+					case 3: $this->imageType = 'png'; break;
 				}
 				return true;
 			}
@@ -885,8 +1063,17 @@ class ImageLite {
 
 
 	/**
-	 * Set width/height for percentage resize
-	 * @param integer $percentage Range from 1 to 100
+	 * Set width/height for percentage resize.
+	 *
+	 * __Examples__
+	 *
+	 *		// Resize to 10% of its original size.
+	 *		ImageLite::inst('./src.jpg')->resizePercent(10)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize to 70% of its original size.
+	 *		ImageLite::inst('./src.jpg')->resizePercent(70)->save('./new.jpg')->getUri();
+	 *
+	 * @param integer $percentage Range from `1`% to `100`%.
 	 * @return object
 	 */
 	public function resizePercent($percentage)
@@ -895,7 +1082,7 @@ class ImageLite {
 		$this->setImageInfo($this->srcFilePath);
 
 		// Resize type is included in the cache filename
-		$this->resizeType = "percent";
+		$this->resizeType = 'percent';
 
 		// Validate the percentage argument
 		if (($percentage = abs((int) $percentage)) > 100) $percentage = 100;
@@ -913,12 +1100,23 @@ class ImageLite {
 
 
 	/**
-	 * Set width/height for crop-to-fit resize
-	 * @param integer|null $width Max width (Note: constrain() has no affect)
-	 * @param integer|null $height Max height (Note: constrain() has no affect)
-	 * @example resizeCropToFit(250); <br />Resize and crop image to match 250x250.
-	 * @example resizeCropToFit(null, 300); <br />Resize and crop image to match 300x300.
-	 * @example resizeCropToFit(250, 300); <br />Resize and crop image to match 250x300.
+	 * Set width/height for crop-to-fit resize.
+	 *
+	 * ___Note:__ Dimensions can not be constrained when using this method. See `constrain()`._
+	 *
+	 * __Examples__
+	 *
+	 *		// Resize and crop image to match 250x250.
+	 *		ImageLite::inst('./src.jpg')->resizeCropToFit(250)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize and crop image to match 300x300.
+	 *		ImageLite::inst('./src.jpg')->resizeCropToFit(null, 300)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize and crop image to match 250x300.
+	 *		ImageLite::inst('./src.jpg')->resizeCropToFit(250, 300)->save('./new.jpg')->getUri();
+	 *
+	 * @param integer|null $width Max width.
+	 * @param integer|null $height Max height.
 	 * @return object
 	 */
 	public function resizeCropToFit($width = null, $height = null)
@@ -927,7 +1125,7 @@ class ImageLite {
 		$this->setImageInfo($this->srcFilePath);
 
 		// Resize type is included in the cache filename
-		$this->resizeType = "crop-to-fit";		
+		$this->resizeType = 'crop-to-fit';
 
 		$this->maxWidth = is_null($width) ? null : (int) abs($width);
 		$this->maxHeight = is_null($height) ? null : (int) abs($height);
@@ -987,30 +1185,45 @@ class ImageLite {
 
 
 	/**
-	 * Set width/height for letterbox resize
+	 * Set width/height for letterbox resize.
 	 *
-	 * Expect the following for background colours:<br />
-	 * <strong>JPEG:</strong> Only a solid background colour can be applied.<br />
-	 * <strong>PNG:</strong> A solid & transparent background colour can be applied.<br />
-	 * <strong>GIF:</strong> A solid background colour can be applied or a full transparency is used if $bgAlpha is 127
+	 * __Examples__
+	 *
+	 *		// Resize image to match 250x250 using a letter box effect.
+	 *		ImageLite::inst('./src.jpg')->resizeLetterbox(250)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize image to match 300x300 using a letter box effect.
+	 *		ImageLite::inst('./src.jpg')->resizeLetterbox(null, 300)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize image to match 250x300 using a letter box effect.
+	 *		ImageLite::inst('./src.jpg')->resizeLetterbox(250, 300)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize image to match 250x300 using a letter box effect with a solid white background.
+	 *		ImageLite::inst('./src.jpg')->resizeLetterbox(250, 300, 'FFFFFF')->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize image to match 250x300 using a letter box effect with a transparent white background.
+	 *		ImageLite::inst('./src.jpg')->resizeLetterbox(250, 300, 'FFFFFF', 80)->save('./new.jpg')->getUri();
+	 *
+	 * __Background colours & transparencies__
+	 *
+	 * * `JPG`: Only a solid background colour can be applied.
+	 * * `PNG`: A solid or transparent background colour can be applied.
+	 * * `GIF`: A solid background colour can be applied or a full transparency if `$bgAlpha` is set to `127`.
+	 *
+	 *
 	 * @param integer|null $width Max width.
-	 * @param integer|null $height Max height
-	 * @param string $bgColour 6-digit hexadecimal background colour (eg. "FFFFFF" = White)
-	 * @param integer $bgAlpha Transparency of the background colour, range between 0 (opaque) and 127 (transparent).
-	 * @example resizeLetterbox(250); <br />Resize image to match 250x250 using a letter box effect.
-	 * @example resizeLetterbox(null, 300); <br />Resize image to match 300x300 using a letter box effect.
-	 * @example resizeLetterbox(250, 300); <br />Resize image to match 250x300 using a letter box effect.
-	 * @example resizeLetterbox(250, 300, "FFFFFF"); <br />Resize image to match 250x300 using a letter box effect with a white background.
-	 * @example resizeLetterbox(250, 300, "FFFFFF", 80); <br />Resize image to match 250x300 using a letter box effect with a transparent white background.
+	 * @param integer|null $height Max height.
+	 * @param string $bgColour 6-digit hexadecimal background colour (eg. `'FFFFFF'` = White).
+	 * @param integer $bgAlpha Transparency of the background colour. Range: `0` (opaque) and `127` (transparent).
 	 * @return object
 	 */
-	public function resizeLetterbox($width = null, $height = null, $bgColour = "000000", $bgAlpha = 0)
+	public function resizeLetterbox($width = null, $height = null, $bgColour = '000000', $bgAlpha = 0)
 	{
 		// Reset the src image dimensions - they may have been changed from previous resizing
 		$this->setImageInfo($this->srcFilePath);
 
 		// Resize type is included in the cache filename
-		$this->resizeType = "letterbox";
+		$this->resizeType = 'letterbox';
 
 		$this->maxWidth = is_null($width) ? null : (int) abs($width);
 		$this->maxHeight = is_null($height) ? null : (int) abs($height);
@@ -1029,7 +1242,7 @@ class ImageLite {
 		}
 
 		// Set the background colour to black if invalid
-		if (!ctype_xdigit($bgColour) || strlen($bgColour) !== 6) $bgColour = "000000";
+		if (!ctype_xdigit($bgColour) || strlen($bgColour) !== 6) $bgColour = '000000';
 
 		// Set the alpha channel to zero if invalid
 		if (($bgAlpha = abs($bgAlpha)) < 0 || $bgAlpha > 127) $bgAlpha = 0;
@@ -1068,7 +1281,7 @@ class ImageLite {
 		$this->dstWidth = $tmpWidth;
 		$this->dstHeight = $tmpHeight;
 
-		// If the destination dimensions are larger than the source diensions and contrain is set, then re-assign the destination dimensions
+		// If the destination dimensions are larger than the source diensions and constrain is set, then re-assign the destination dimensions
 		if ($this->constrain === true)
 		{
 			if ($this->dstWidth > $this->srcWidth) $this->dstWidth = $this->srcWidth;
@@ -1081,7 +1294,7 @@ class ImageLite {
 		// Apply a background colour (with transparency if required) for PNG's
 		// Apply a solid background colour for JPEG's
 		// Apply a solid background colour for GIF's or a transparent background if $bgAlpha is set to 127 (true transparency)
-		if ($this->imageType !== "gif" || $bgAlpha != 127)
+		if ($this->imageType !== 'gif' || $bgAlpha != 127)
 		{
 			$colour = imagecolorclosestalpha(	$this->dstImg,
 												hexdec(substr($bgColour, 0, 2)),
@@ -1097,14 +1310,27 @@ class ImageLite {
 
 
 	/**
-	 * Set width/height for standard resize
+	 * Set width/height for standard resize.
+	 *
+	 * __Examples__
+	 *
+	 *		// Resize to the maximum width of 250.
+	 *		ImageLite::inst('./src.jpg')->resize(250)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize to the maximum height of 300.
+	 *		ImageLite::inst('./src.jpg')->resize(null, 300)->save('./new.jpg')->getUri();
+	 *
+	 *		// Resize to fit within height and width.
+	 *		ImageLite::inst('./src.jpg')->resize(250, 300)->save('./new.jpg')->getUri();
+	 *
+	 *		// Disregard aspect ratio and resize to max width.
+	 *		ImageLite::inst('./src.jpg')->aspectRatio(false)->resize(250)->save('./new.jpg')->getUri();
+	 *
+	 *		// Disregard aspect ratio and resize to max height.
+	 *		ImageLite::inst('./src.jpg')->aspectRatio(false)->resize(null, 300)->save('./new.jpg')->getUri();
+	 *
 	 * @param integer|null $width Max width.
-	 * @param integer|null $height Max height
-	 * @example resize(250); <br />Resize to the max width.
-	 * @example resize(null, 300); <br />Resize to the max height.
-	 * @example resize(250, 300); <br />Resize to fit within height and width.
-	 * @example aspectRatio(false)->resize(250); <br />Disregard aspect ratio and resize to max width.
-	 * @example aspectRatio(false)->resize(null, 300); <br />Disregard aspect ratio and resize to max height.
+	 * @param integer|null $height Max height.
 	 * @return object
 	 */
 	public function resize($width = null, $height = null)
@@ -1113,7 +1339,7 @@ class ImageLite {
 		$this->setImageInfo($this->srcFilePath);
 
 		// Resize type is included in the cache filename
-		$this->resizeType = "standard";				
+		$this->resizeType = 'standard';
 
 		$this->maxWidth = is_null($width) ? null : (int) abs($width);
 		$this->maxHeight = is_null($height) ? null : (int) abs($height);
@@ -1192,17 +1418,20 @@ class ImageLite {
 
 
 	/**
-	 * Preserve alpha transparency
+	 * Preserve alpha transparency.
+	 *
+	 * Preserve the transparency of an image based on its format, ie. gif or png.
+	 *
 	 * @return void
 	 */
 	protected function preserveAlphaTransparency()
 	{
-		if ($this->imageType === "png")
+		if ($this->imageType === 'png')
 		{
 			imagealphablending($this->dstImg, false);
 			imagesavealpha($this->dstImg, true);
 		}
-		elseif ($this->imageType === "gif")
+		elseif ($this->imageType === 'gif')
 		{
 			imagecolortransparent($this->dstImg, imagecolorallocate($this->dstImg, 0, 0, 0));
 			imagetruecolortopalette($this->dstImg, true, 256);
@@ -1211,13 +1440,27 @@ class ImageLite {
 
 
 	/**
-	 * Save resized image
-	 * @param string|null $customDestinationFilePath Path to a custom destination file (if populated this is used instead of the cache path)
-	 * @param boolean $createPath Create the custom directory path of $customDestinationFilePath if missing
-	 * @example save(); <br />Image is resized and stored in the cache.
-	 * @example save("./new/image.jpg"); <br />Image is resized and stored in a custom destination.
-	 * @example save("./new/path/image.jpg", true); <br />The path (./new/path/) is created (if missing), image is resized and then stored in the custom destination.
+	 * Save resized image.
+	 *
+	 * __Examples__
+	 *
+	 *		// Image is resized and stored in the cache.
+	 *		ImageLite::inst('./src.jpg')->resize(250)->save()->getUri();
+	 *
+	 *		// Image is resized and stored in a custom destination.
+	 *		ImageLite::inst('./src.jpg')->resize(250)->save('./new/image.jpg')->getUri();
+	 *
+	 *		// Image is resized and stored in a custom destination.
+	 *		// The path (./new/path/) is created if missing, see second argument.
+	 *		ImageLite::inst('./src.jpg')->resize(250)->save('./new/path/image.jpg', true)->getUri();
+	 *
+	 * @param string|null $customDestinationFilePath Path to a custom destination file (if populated this is used instead of the cache path).
+	 * @param boolean $createPath Create the custom directory path of `$customDestinationFilePath` if it doesn't exist..
 	 * @return object
+	 * @throws Exception If cache directory could not be set.
+	 * @throws Exception If GD support for JPEG, GIF or PNG is not enabled.
+	 * @throws Exception If the `save()` method is called before a `resize*()` method has been called.
+	 * @throws UnexpectedValueException If the new image could not be created.
 	 */
 	public function save($customDestinationFilePath = null, $createPath = false)
 	{
@@ -1234,7 +1477,7 @@ class ImageLite {
 			if ($createPath === true)
 			{
 				// Attempt to create directory path and assume the basename is the filename
-				$this->createDirectory($this->customDestinationFilePath, true);
+				self::createDirectory($this->customDestinationFilePath, true);
 			}
 		}
 		elseif (!empty(self::$cacheRootDir))
@@ -1257,19 +1500,19 @@ class ImageLite {
 			// Create an image resource based on the correct image type
 			switch ($this->imageType)
 			{
-				case "gif":
+				case 'gif':
 					if (imagetypes() & IMG_GIF)
 						$this->srcImg = imagecreatefromgif($this->srcFilePath);
 					else
 						throw new Exception(__METHOD__."(): GIF is not supported by this version of GD");
 				break;
-				case "jpg":
+				case 'jpg':
 					if (imagetypes() & IMG_JPG)
 						$this->srcImg = imagecreatefromjpeg($this->srcFilePath);
 					else
 						throw new Exception(__METHOD__."(): JPEG is not supported by this version of GD");
 				break;
-				case "png":
+				case 'png':
 					if (imagetypes() & IMG_PNG)
 						$this->srcImg = imagecreatefrompng($this->srcFilePath);
 					else
@@ -1306,14 +1549,14 @@ class ImageLite {
 										$this->srcHeight);
 
 					// Rotate the image if the function imagerotate() exists and the rotation setting is not zero
-					if (function_exists("imagerotate") && $this->rotation !== 0)
+					if (function_exists('imagerotate') && $this->rotation !== 0)
 					{
 						// Background colour is hard-coded because we only accept valid rotations of modulus 90 (eg. 0, -90, 180 etc...)
 						$this->dstImg = imagerotate($this->dstImg, $this->rotation, (256*256*256)-1);
 					}
 
 					// Sharpen the image if the function imageconvolution() exists and the sharpening level (percentage) is above zero
-					if (function_exists("imageconvolution") && $this->sharpen > 0)
+					if (function_exists('imageconvolution') && $this->sharpen > 0)
 					{
 						// The sharpen level is supplied as a percentage and we use this against a maximum of 3
 						$m1 = round(-((3/100)*$this->sharpen), 2);
@@ -1326,7 +1569,7 @@ class ImageLite {
 						);
 
 						// Calculate the divisor
-						$divisor = array_sum(array_map("array_sum", $sharpenMatrix));
+						$divisor = array_sum(array_map('array_sum', $sharpenMatrix));
 
 						// Apply convolution matrix
 						imageconvolution($this->dstImg, $sharpenMatrix, $divisor, $offset = 0);
@@ -1335,13 +1578,13 @@ class ImageLite {
 					// Output the image to the new destination
 					switch ($this->imageType)
 					{
-						case "gif":
+						case 'gif':
 							imagegif($this->dstImg, $imgDestinationFilePath);
 						break;
-						case "jpg":
+						case 'jpg':
 							imagejpeg($this->dstImg, $imgDestinationFilePath, $this->quality);
 						break;
-						case "png":
+						case 'png':
 							// Image quality is set as a range from 0-100 (the default for JPEG's)
 							// However, PNG's are different and use 0 (no compression) to 9 (highest compression)
 							// Hence, to maintain the continuity of one range (ie. 0-100) we apply some simply maths
@@ -1370,31 +1613,47 @@ class ImageLite {
 
 
 	/**
-	 * Get image URI
-	 * @return string URI
+	 * Get image URI.
+	 *
+	 * This method returns the path to the new resized image.
+	 *
+	 * __Example__
+	 *
+	 *		// Resize/save a new image and output the new URI.
+	 *		<img src='<?php echo ImageLite::inst('./src.jpg')->resize(250)->save('./tmp/new.jpg', true)->getUri(); ?>' />;
+	 *
+	 *
+	 * __Output__
+	 *
+	 *		<img src='/tmp/new.jpg' />
+	 *
+	 * @return string URI to the new resized image.
 	 */
 	public function getUri()
 	{
-		// Return a custom destination URI if a custom path was declared, however this should be known outside of the object
+		// Custom destination.
+		// Return a custom destination URI if a custom path was declared in the save() method.
 		if (!empty($this->customDestinationFilePath))
 		{
-			$uri = substr_replace(realpath($this->customDestinationFilePath), "", 0, strlen(self::getDocumentRoot()));
-			$uri = "/" . str_replace("\\", "/", $uri);
+			$uri = substr_replace(realpath($this->customDestinationFilePath), '', 0, strlen(self::getDocumentRoot()));
+			$uri = '/' . str_replace('\\', '/', $uri);
 			return $uri;
 		}
 
-		// It's possible that a cache directory is stored below the Document Root and a URI rewrite is used instead
-		// Hence, if a cache URI has been set then return the cache URI with the file path appended
+		// Custom cache URI.
+		// If an explicit cache URI has been provided, then return the cache URI with the new file path appended.
+		// This is a common feature when ModRewrite is being used.
 		if (!empty(self::$cacheUri))
 		{
-			return str_replace("\\", "/", self::getCacheUri() . $this->getCacheDestinationDirectoryPath() . $this->getCacheDestinationFilename());
+			return str_replace('\\', '/', self::getCacheUri() . $this->getCacheDestinationDirectoryPath() . $this->getCacheDestinationFilename());
 		}
 		else
 		{
-			// However, if a cache URI was not set then perform a substring to determine the URI cache path
-			// Remove the document root from the beginning of the file path string and then convert slashes
-			$uri = substr_replace(self::getCacheRootDirectory() . $this->getCacheDestinationFilePath(), "", 0, strlen(self::getDocumentRoot()));
-			$uri = "/" . str_replace("\\", "/", $uri);
+			// Dynamic cache.
+			// No custom destination path or cache URI have been declared, hence we automatically generate the path to the cached file.
+			// Remove the document root from the beginning of the file path string and then convert slashes.
+			$uri = substr_replace(self::getCacheRootDirectory() . $this->getCacheDestinationFilePath(), '', 0, strlen(self::getDocumentRoot()));
+			$uri = '/' . str_replace('\\', '/', $uri);
 			return $uri;
 		}
 	}

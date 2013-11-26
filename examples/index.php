@@ -1,4 +1,4 @@
-<?php include_once("header.php"); ?>
+<?php include_once('header.php'); ?>
 
 <div class="span9">
 	<div class="navbar">
@@ -17,7 +17,7 @@
 
 // Obtain assets images
 //----------------------------------------------------------------------------------------
-$images = glob("../assets/images/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+$images = glob('../assets/images/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 
 
 // Resize each image
@@ -110,5 +110,5 @@ foreach ($images as $filename)
 }
 
 
-include_once("footer.php");
+include_once('footer.php');
 ?>

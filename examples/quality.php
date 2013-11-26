@@ -1,4 +1,4 @@
-<?php include_once("header.php"); ?>
+<?php include_once('header.php'); ?>
 
 <div class="span9">
 	<div class="navbar">
@@ -12,7 +12,7 @@
 
 <?php
 
-$filename = "../assets/images/large-landscape.jpg";
+$filename = '../assets/images/large-landscape.jpg';
 
 for ($i=0; $i<=100; $i+=10)
 {
@@ -32,5 +32,5 @@ for ($i=0; $i<=100; $i+=10)
 
 }
 
-include_once("footer.php");
+include_once('footer.php');
 ?>

@@ -1,4 +1,4 @@
-<?php include_once("header.php"); ?>
+<?php include_once('header.php'); ?>
 
 <div class="span9">
 	<div class="navbar">
@@ -12,7 +12,7 @@
 
 <?php
 
-$filename = "../assets/images/small-square.png";
+$filename = '../assets/images/small-square.png';
 
 echo "<p>";
 echo "	<strong>Maximum Width:</strong> 400px<br />";
@@ -39,5 +39,5 @@ echo "	Image <strong>will</strong> be enlarged beyond original dimensions (notic
 echo "</p>";
 echo "<img src=\"". ImageLite::inst($filename)->constrain(false)->resize(400,400)->save()->getUri() ."\">\r\n";
 
-include_once("footer.php");
+include_once('footer.php');
 ?>

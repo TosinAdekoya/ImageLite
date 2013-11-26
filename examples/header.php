@@ -3,19 +3,19 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-include_once("../src/imagelite.class.php");
+include_once('../src/ImageLite/ImageLite.php');
 
 // Set-up ImageLite
 //----------------------------------------------------------------------------------------
 try {
 	
-	ImageLite::setCacheRootDirectory("./cache", true);
-	ImageLite::setLifetime("-200 seconds");
+	ImageLite::setCacheRootDirectory('./cache', true);
+	ImageLite::setLifetime(60*60*4);
 
 	// Optional Set-up
 	// ImageLite::setMode(0775);
-	// ImageLite::setCacheUri("/examples/cache");
-	// ImageLite::setDocumentRoot("/home/website/public_html");
+	// ImageLite::setCacheUri('/examples/cache');
+	// ImageLite::setDocumentRoot('/home/website/public_html');
 }
 catch (Exception $e) { 
 	echo $e->getMessage();
@@ -51,8 +51,6 @@ catch (Exception $e) {
 				margin:15px 0 0 15px;
 			}
 			.well-dark {
-				background-color:#B0B0B0;
-				background-color:#D0859F;
 				background-color:#BAA6FF;
 			}
 			.img-block {				

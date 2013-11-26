@@ -1,4 +1,4 @@
-<?php include_once("header.php"); ?>
+<?php include_once('header.php'); ?>
 
 <div class="span9">
 	<div class="navbar">
@@ -12,7 +12,7 @@
 
 <?php
 
-$filename = "../assets/images/large-portrait.png";
+$filename = '../assets/images/large-portrait.png';
 
 echo "<p>";
 echo "	<strong>Rotate with positive numbers</strong><br />";
@@ -72,5 +72,5 @@ echo "<img src=\"". ImageLite::inst($filename)->rotate(180)->resizeLetterbox(150
 echo "<img src=\"". ImageLite::inst($filename)->rotate(270)->resizeLetterbox(150, 150)->save()->getUri() ."\">\r\n";
 
 
-include_once("footer.php");
+include_once('footer.php');
 ?>
