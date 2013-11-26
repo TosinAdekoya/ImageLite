@@ -1,0 +1,2637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1533044624"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1533044624" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/ImageLite.html">ImageLite</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>ImageLite</h1>
+                    <p><em>A light-weight PHP image resizer with dynamic caching.</em></p>
+                    <p>A simple solution to fulfil the most common image resizing tasks with <a href="http://php.net/manual/en/book.image.php">GD</a>.</p>
+
+<h2>Features</h2>
+
+<p><strong>Supported Image Types</strong></p>
+
+<ul>
+<li>JPEG.</li>
+<li>GIF + Transparency.</li>
+<li>PNG + Transparency.</li>
+</ul>
+
+<p><strong>Resize</strong></p>
+
+<ul>
+<li>Standard/Proportional.</li>
+<li>Crop-to-fit.</li>
+<li>Letterbox.</li>
+<li>Percentage.</li>
+</ul>
+
+<p><strong>Manipulation</strong></p>
+
+<ul>
+<li>Sharpen.</li>
+<li>Rotate.</li>
+<li>Aspect Ratio toggle.</li>
+<li>Constrain dimensions.</li>
+<li>Quality/Compression.</li>
+</ul>
+
+<p><strong>File Saving</strong></p>
+
+<ul>
+<li>Custom destination paths.</li>
+<li>Automated file caching with custom expiration.</li>
+</ul>
+
+<h2>Examples</h2>
+
+<h4>Resize and save an image to a specific location.</h4>
+
+<pre><code>try {
+    include_once('imagelite.class.php');
+    $srcUri = ImageLite::inst('./src.jpg')-&gt;sharpen(7)-&gt;resize(100,200)-&gt;save('./new.jpg')-&gt;getUri();
+    echo "&lt;img src='{$srcUri}' /&gt;";
+}
+catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}
+</code></pre>
+
+<h4>Resize an image and store it in the cache.</h4>
+
+<pre><code>try {
+    include_once('imagelite.class.php');
+
+    ImageLite::setCacheRootDirectory('/path/to/images/cache/directory', true);
+
+    $imgURI = ImageLite::inst('/path/to/src/image.jpg')-&gt;quality(70)-&gt;resize(100,200)-&gt;save()-&gt;getUri();
+
+    echo "&lt;img src='". $imgURI ."' /&gt;";
+}
+catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}
+</code></pre>
+
+<h4>A slightly more advanced method of resizing images.</h4>
+
+<p><strong>Note</strong>: Object chaining is not used in this example.</p>
+
+<pre><code>try {
+    include_once('imagelite.class.php');
+
+    ImageLite::setCacheRootDirectory('/path/to/cache/directory', true);
+    ImageLite::setMode(0777);
+    ImageLite::setCacheUri('/assets/cache/');
+
+    $img = ImageLite::inst('/path/to/original/image.jpg');
+    $img-&gt;quality(70);
+    $img-&gt;aspectRatio(false);
+    $img-&gt;sharpen(8);
+    $img-&gt;resize(100,200);
+    $img-&gt;save();
+    echo "&lt;img src='". $img-&gt;getUri() ."' /&gt;";
+}
+catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}
+</code></pre>
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/ImageLite.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getInstance" class="">getInstance()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_inst" class="">inst()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_debug" class="">debug()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_setCacheRootDirectory" class="">setCacheRootDirectory()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getCacheRootDirectory" class="">getCacheRootDirectory()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_setCacheUri" class="">setCacheUri()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getCacheUri" class="">getCacheUri()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_setDocumentRoot" class="">setDocumentRoot()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getDocumentRoot" class="">getDocumentRoot()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_setLifetime" class="">setLifetime()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_setMode" class="">setMode()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getCacheDestinationDirectoryPath" class="">getCacheDestinationDirectoryPath()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getCacheDestinationFilename" class="">getCacheDestinationFilename()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getCacheDestinationFilePath" class="">getCacheDestinationFilePath()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_aspectRatio" class="">aspectRatio()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_quality" class="">quality()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_sharpen" class="">sharpen()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_constrain" class="">constrain()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_rotate" class="">rotate()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_resizePercent" class="">resizePercent()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_resizeCropToFit" class="">resizeCropToFit()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_resizeLetterbox" class="">resizeLetterbox()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_resize" class="">resize()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_save" class="">save()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getUri" class="">getUri()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/ImageLite.html#method_getBytes" class="">getBytes()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_getMemoryExhaustedMsg" class="">getMemoryExhaustedMsg()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_createDirectory" class="">createDirectory()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_setFilePath" class="">setFilePath()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_hasExpired" class="">hasExpired()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_setImageInfo" class="">setImageInfo()</a><br />
+                                                                    <a href="../classes/ImageLite.html#method_preserveAlphaTransparency" class="">preserveAlphaTransparency()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/ImageLite.html#property_instances" class="">$instances</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_cacheRootDir" class="">$cacheRootDir</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_cacheUri" class="">$cacheUri</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_documentRoot" class="">$documentRoot</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_imgLifetime" class="">$imgLifetime</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_mode" class="">$mode</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_srcFilePath" class="">$srcFilePath</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_resizeType" class="">$resizeType</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_srcImg" class="">$srcImg</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_dstImg" class="">$dstImg</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_srcWidth" class="">$srcWidth</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_srcHeight" class="">$srcHeight</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_maxWidth" class="">$maxWidth</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_maxHeight" class="">$maxHeight</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_dstWidth" class="">$dstWidth</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_dstHeight" class="">$dstHeight</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_dstX" class="">$dstX</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_dstY" class="">$dstY</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_srcX" class="">$srcX</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_srcY" class="">$srcY</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_imageType" class="">$imageType</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_keepAspectRatio" class="">$keepAspectRatio</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_quality" class="">$quality</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_rotation" class="">$rotation</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_sharpen" class="">$sharpen</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_constrain" class="">$constrain</a><br />
+                                                                    <a href="../classes/ImageLite.html#property_customDestinationFilePath" class="">$customDestinationFilePath</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/ImageLite.php.html"><div class="path-wrapper">ImageLite.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\ImageLite</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\ImageLite</div>
+                            </dd>
+
+                        
+                        
+                                                                            <dt>See also</dt>
+                                                                                    <dd><a href="https://github.com/mirrorpixel/ImageLite"><div class="namespace-wrapper">Git Repository</div></a></dd>
+                                                        <dd><a href="http://php.net/manual/en/function.imageconvolution.php"><div class="namespace-wrapper">Image sharpening uses imageconvolution (available in PHP 5.1+ only)</div></a></dd>
+                                                    
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                license
+                            </th>
+                            <td>
+                                                                    <p>GPL</p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                                    <p>Unit tests</p>
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_instances" name="property_instances" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$instances</h3>
+                <pre class="signature">$instances : array</pre>
+                <p><em>Array of instances for each image object.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_cacheRootDir" name="property_cacheRootDir" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$cacheRootDir</h3>
+                <pre class="signature">$cacheRootDir : string</pre>
+                <p><em>Path to the root directory of the cache.</em></p>
+                <p><strong>Example</strong></p>
+
+<pre><code>'/home/website/public_html/assets/cache/'
+</code></pre>
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_cacheUri" name="property_cacheUri" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$cacheUri</h3>
+                <pre class="signature">$cacheUri : string</pre>
+                <p><em>Absolute/relative URI path to the cache.</em></p>
+                <p><strong>Example</strong></p>
+
+<pre><code>'/assets/cached-images/'
+</code></pre>
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_documentRoot" name="property_documentRoot" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$documentRoot</h3>
+                <pre class="signature">$documentRoot : string</pre>
+                <p><em>Path to the document root directory.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>'/home/website/public_html/'
+'/home/website/public_html/subsite/'
+</code></pre>
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_imgLifetime" name="property_imgLifetime" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$imgLifetime</h3>
+                <pre class="signature">$imgLifetime : string</pre>
+                <p><em>Lifetime of a cached image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">Accepts strtotime() values only.</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mode" name="property_mode" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$mode</h3>
+                <pre class="signature">$mode : integer</pre>
+                <p><em>Default mode for directories and files.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                &mdash; An octal number                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_srcFilePath" name="property_srcFilePath" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$srcFilePath</h3>
+                <pre class="signature">$srcFilePath : string</pre>
+                <p><em>Source image file path.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_resizeType" name="property_resizeType" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$resizeType</h3>
+                <pre class="signature">$resizeType : string</pre>
+                <p><em>The type of resize to perform.</em></p>
+                <p>Valid values: <code>standard</code>, <code>crop-to-fit</code>, <code>letterbox</code> and <code>percent</code>.</p>
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_srcImg" name="property_srcImg" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$srcImg</h3>
+                <pre class="signature">$srcImg : resource</pre>
+                <p><em>Resource for source image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                resource
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dstImg" name="property_dstImg" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dstImg</h3>
+                <pre class="signature">$dstImg : resource</pre>
+                <p><em>Resource for destination image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                resource
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_srcWidth" name="property_srcWidth" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$srcWidth</h3>
+                <pre class="signature">$srcWidth : integer</pre>
+                <p><em>The width of the source image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_srcHeight" name="property_srcHeight" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$srcHeight</h3>
+                <pre class="signature">$srcHeight : integer</pre>
+                <p><em>The height of the source image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_maxWidth" name="property_maxWidth" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$maxWidth</h3>
+                <pre class="signature">$maxWidth : integer</pre>
+                <p><em>The max width of the new image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_maxHeight" name="property_maxHeight" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$maxHeight</h3>
+                <pre class="signature">$maxHeight : integer</pre>
+                <p><em>The max height of the new image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dstWidth" name="property_dstWidth" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dstWidth</h3>
+                <pre class="signature">$dstWidth : integer</pre>
+                <p><em>The calculated width for the destination image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dstHeight" name="property_dstHeight" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dstHeight</h3>
+                <pre class="signature">$dstHeight : integer</pre>
+                <p><em>The calculated height for the destination image.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dstX" name="property_dstX" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dstX</h3>
+                <pre class="signature">$dstX : integer</pre>
+                <p><em>X-coordinate of destination point.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">See imagecopyresampled()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dstY" name="property_dstY" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dstY</h3>
+                <pre class="signature">$dstY : integer</pre>
+                <p><em>Y-coordinate of destination point.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">See imagecopyresampled()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_srcX" name="property_srcX" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$srcX</h3>
+                <pre class="signature">$srcX : integer</pre>
+                <p><em>X-coordinate of source point</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">See imagecopyresampled()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_srcY" name="property_srcY" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$srcY</h3>
+                <pre class="signature">$srcY : integer</pre>
+                <p><em>Y-coordinate of source point.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">See imagecopyresampled()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_imageType" name="property_imageType" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$imageType</h3>
+                <pre class="signature">$imageType : string</pre>
+                <p><em>Image type.</em></p>
+                <p>Valid values: <code>'gif'</code>, <code>'jpg'</code> and <code>'png'</code>.</p>
+
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_keepAspectRatio" name="property_keepAspectRatio" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$keepAspectRatio</h3>
+                <pre class="signature">$keepAspectRatio : boolean</pre>
+                <p><em>Maintain aspect ratio.</em></p>
+                <p>The status of whether the aspect ratio of the image should be maintained.</p>
+
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_quality" name="property_quality" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$quality</h3>
+                <pre class="signature">$quality : integer</pre>
+                <p><em>Image quality/compression.</em></p>
+                <p>Range: <code>0</code> (worst quality/small file size) to <code>100</code> (best quality/large file size).</p>
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_rotation" name="property_rotation" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$rotation</h3>
+                <pre class="signature">$rotation : integer</pre>
+                <p><em>Image rotation.</em></p>
+                <p>Range: <code>0</code> degrees to <code>359</code> degrees.</p>
+
+<p>Support limited to <code>-270</code>, <code>-180</code>, <code>-90</code>, <code>0</code>, <code>90</code>, <code>180</code> and <code>270</code>.</p>
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sharpen" name="property_sharpen" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$sharpen</h3>
+                <pre class="signature">$sharpen : integer</pre>
+                <p><em>Image sharpening.</em></p>
+                <p>Range: <code>0</code> (no sharpening) to <code>100</code> (maximum sharpening).</p>
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_constrain" name="property_constrain" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$constrain</h3>
+                <pre class="signature">$constrain : boolean</pre>
+                <p><em>Constrain image dimensions.</em></p>
+                <p>Constrain the re-sizing of an image to it's original dimensions.</p>
+
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_customDestinationFilePath" name="property_customDestinationFilePath" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$customDestinationFilePath</h3>
+                <pre class="signature">$customDestinationFilePath : boolean</pre>
+                <p><em>Custom file destination.</em></p>
+                <p>Save resized image to this custom file path rather than the cache.</p>
+
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(string <span class="argument">$filePath</span>)</pre>
+                <p><em>Constructor</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filePath</td>
+                                <td><p>Path to the image file.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\RuntimeException</dt>
+                            <dd><p>If GD is not enabled on the server.</p>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInstance" name="method_getInstance" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInstance()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInstance(string <span class="argument">$filePath</span>) : object</pre>
+                <p><em>Get an instance.</em></p>
+                <p>The image instance is created in the constructor using <code>setFilePath()</code>.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filePath</td>
+                                <td><p>The path to the image file.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/ImageLite.html#method_setFilePath"><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_inst" name="method_inst" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">inst()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">inst(string <span class="argument">$filePath</span>) : object</pre>
+                <p><em>Shorthand alias for getInstance().</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filePath</td>
+                                <td><p>The path to the image file.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_debug" name="method_debug" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">debug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">debug() : void</pre>
+                <p><em>Print/output debug information.</em></p>
+                <p>This is for developer purposes only. Call this method to output helpful information during development.</p>
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCacheRootDirectory" name="method_setCacheRootDirectory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCacheRootDirectory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCacheRootDirectory(string <span class="argument">$path</span>, string <span class="argument">$create</span>) : void</pre>
+                <p><em>Set cache directory.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Set absolute path to cache root directory.
+ImageLite::setCacheRootDirectory('/home/website/public_html/assets/cache');
+
+// Set relative path to cache root directory.
+ImageLite::setCacheRootDirectory('../assets/cache');
+
+// Create directory path if it doesn't exist then set it.
+ImageLite::setCacheRootDirectory('/home/website/public_html/assets/cache', true);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path</td>
+                                <td><p>Path to the root cache directory.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$create</td>
+                                <td><p>Create the directory. Default is <code>false</code>.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCacheRootDirectory" name="method_getCacheRootDirectory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCacheRootDirectory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCacheRootDirectory() : string</pre>
+                <p><em>Get cache directory.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCacheUri" name="method_setCacheUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCacheUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCacheUri(string <span class="argument">$path</span>) : void</pre>
+                <p><em>Set cache URI (optional).</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Absolute URI path to cache.
+ImageLite::setCacheRootUri('/cache/');
+
+// Relative URI path to cache.
+ImageLite::setCacheRootUri('assets/cache');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path</td>
+                                <td><p>URI path to the root cache directory.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCacheUri" name="method_getCacheUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCacheUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCacheUri() : string</pre>
+                <p><em>Get cache URI.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDocumentRoot" name="method_setDocumentRoot" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDocumentRoot()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDocumentRoot(string <span class="argument">$path</span>) : void</pre>
+                <p><em>Set document root (optional).</em></p>
+                <p>If this method is not called then the default document root is taken from <code>$_SERVER['DOCUMENT_ROOT']</code>.</p>
+
+<p><strong>Examples</strong></p>
+
+<pre><code>// Absolute path to document root.
+ImageLite::setDocumentRoot('/home/website/public_html');
+ImageLite::setDocumentRoot('/home/website/public_html/subsite/');
+
+// Relative path to document root.
+ImageLite::setDocumentRoot('../../public_html');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path</td>
+                                <td><p>Path to document root directory.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDocumentRoot" name="method_getDocumentRoot" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDocumentRoot()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDocumentRoot() : string</pre>
+                <p><em>Get document root.</em></p>
+                
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLifetime" name="method_setLifetime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLifetime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLifetime(string <span class="argument">$lifetime</span>) : void</pre>
+                <p><em>Set image expiration lifetime.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Image will never expire (default).
+ImageLite::setLifetime(null);
+
+// Image expires after 1 month.
+ImageLite::setLifetime('-1 month');
+
+// Image expires in 30 seconds.
+ImageLite::setLifetime('-30 seconds');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$lifetime</td>
+                                <td><p>A time period set as a negative (eg. <code>'-3 months'</code>).</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">Preferred format for $lifetime.</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMode" name="method_setMode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setMode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setMode(integer <span class="argument">$mode</span>) : void</pre>
+                <p><em>Set mode permissions.</em></p>
+                <p>This mode is applied to all directories and images that are auto-generated.</p>
+
+<p><strong>Examples</strong></p>
+
+<pre><code>// Read and write for owner, nothing for everybody else.
+ImageLite::setMode(0600);
+
+// Read and write for owner, read for everybody else.
+ImageLite::setMode(0644);
+
+// Everything for owner, read and execute for others.
+ImageLite::setMode(0755); // Default.
+
+// Everything for owner, read and execute for owner's group.
+ImageLite::setMode(0750);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$mode</td>
+                                <td><p>An octal integer</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">See chmod() for more info.</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCacheDestinationDirectoryPath" name="method_getCacheDestinationDirectoryPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCacheDestinationDirectoryPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCacheDestinationDirectoryPath() : string</pre>
+                <p><em>Get cache destination directory path.</em></p>
+                <p><strong>Example</strong></p>
+
+<p><code>160/200/100/56/q75-r0-s0-c/</code></p>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCacheDestinationFilename" name="method_getCacheDestinationFilename" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCacheDestinationFilename()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCacheDestinationFilename() : string</pre>
+                <p><em>Get cache destination filename.</em></p>
+                <p><strong>Example</strong></p>
+
+<p><code>f410e0466ae4b065bfa4d9010ad6056864ed4e50_d8c58f30bbe1daadb7a6a270485aaf0f1ca5efe0.jpg</code></p>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCacheDestinationFilePath" name="method_getCacheDestinationFilePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCacheDestinationFilePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCacheDestinationFilePath() : string</pre>
+                <p><em>Get cache destination file path.</em></p>
+                <p>A concatenation of <code>getCacheDestinationDirectoryPath()</code> and <code>getCacheDestinationFilename()</code>.</p>
+
+<p><strong>Example</strong></p>
+
+<p><code>160/200/100/56/q75-r0-s0-c/f410e0466ae4b065bfa4d9010ad6056864ed4e50_d8c58f30bbe1daadb7a6a270485aaf0f1ca5efe0.jpg</code></p>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_aspectRatio" name="method_aspectRatio" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">aspectRatio()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">aspectRatio(boolean <span class="argument">$keep</span>) : object</pre>
+                <p><em>Set aspect ratio status.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Keep the aspect ratio.
+ImageLite::inst('./src.jpg')-&gt;aspectRatio(true)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Ignore the aspect ratio and fulfil the exact maximum dimensions.
+ImageLite::inst('./src.jpg')-&gt;aspectRatio(false)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$keep</td>
+                                <td><p>Default is <code>true</code>.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quality" name="method_quality" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quality()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quality(integer <span class="argument">$level</span>) : object</pre>
+                <p><em>Set quality (compression) level.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Worst quality with highest compression for a smaller file size.
+ImageLite::inst('./src.jpg')-&gt;quality(0)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Highest quality with a lower compression for a larger file size.
+ImageLite::inst('./src.jpg')-&gt;quality(100)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$level</td>
+                                <td><p>Range from <code>0</code> (worst quality) to <code>100</code> (best quality). Default is <code>75</code>.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sharpen" name="method_sharpen" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sharpen()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sharpen(integer <span class="argument">$level</span>) : object</pre>
+                <p><em>Set sharpening level.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// No sharpening.
+ImageLite::inst('./src.jpg')-&gt;sharpen(0)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Maximum sharpening.
+ImageLite::inst('./src.jpg')-&gt;sharpen(100)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$level</td>
+                                <td><p>Range from <code>0</code> (no sharpening) to <code>100</code> (maximum sharpening). Default is <code>0</code>.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_constrain" name="method_constrain" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">constrain()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">constrain(boolean <span class="argument">$status</span>) : object</pre>
+                <p><em>Set dimension constraint.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Image will not be enlarged beyond its original dimensions.
+ImageLite::inst('./src.jpg')-&gt;constrain(true)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Image can be enlarged beyond its original dimensions.
+ImageLite::inst('./src.jpg')-&gt;constrain(false)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$status</td>
+                                <td><p>Default is <code>true</code>.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_rotate" name="method_rotate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">rotate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">rotate(integer <span class="argument">$angle</span>) : object</pre>
+                <p><em>Set rotation angle in degrees.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Rotate image 90 degrees clockwise.
+ImageLite::inst('./src.jpg')-&gt;rotate(90)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Rotate image 90 degrees counter-clockwise.
+ImageLite::inst('./src.jpg')-&gt;rotate(-90)-&gt;resize(200)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$angle</td>
+                                <td><p>Angle in degrees (<code>-90</code>, <code>-180</code>, <code>-270</code>, <code>90</code>, <code>180</code> or <code>270</code>). Default is <code>0</code> (no rotation).</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                            <p>Potentially allow for degrees other than -90, -180, -270, 90, 180 and 270</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resizePercent" name="method_resizePercent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resizePercent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resizePercent(integer <span class="argument">$percentage</span>) : object</pre>
+                <p><em>Set width/height for percentage resize.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Resize to 10% of its original size.
+ImageLite::inst('./src.jpg')-&gt;resizePercent(10)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize to 70% of its original size.
+ImageLite::inst('./src.jpg')-&gt;resizePercent(70)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$percentage</td>
+                                <td><p>Range from <code>1</code>% to <code>100</code>%.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resizeCropToFit" name="method_resizeCropToFit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resizeCropToFit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resizeCropToFit(integer|null <span class="argument">$width</span>, integer|null <span class="argument">$height</span>) : object</pre>
+                <p><em>Set width/height for crop-to-fit resize.</em></p>
+                <p><em><strong>Note:</strong> Dimensions can not be constrained when using this method. See <code>constrain()</code>.</em></p>
+
+<p><strong>Examples</strong></p>
+
+<pre><code>// Resize and crop image to match 250x250.
+ImageLite::inst('./src.jpg')-&gt;resizeCropToFit(250)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize and crop image to match 300x300.
+ImageLite::inst('./src.jpg')-&gt;resizeCropToFit(null, 300)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize and crop image to match 250x300.
+ImageLite::inst('./src.jpg')-&gt;resizeCropToFit(250, 300)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$width</td>
+                                <td><p>Max width.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$height</td>
+                                <td><p>Max height.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resizeLetterbox" name="method_resizeLetterbox" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resizeLetterbox()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resizeLetterbox(integer|null <span class="argument">$width</span>, integer|null <span class="argument">$height</span>, string <span class="argument">$bgColour</span>, integer <span class="argument">$bgAlpha</span>) : object</pre>
+                <p><em>Set width/height for letterbox resize.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Resize image to match 250x250 using a letter box effect.
+ImageLite::inst('./src.jpg')-&gt;resizeLetterbox(250)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize image to match 300x300 using a letter box effect.
+ImageLite::inst('./src.jpg')-&gt;resizeLetterbox(null, 300)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize image to match 250x300 using a letter box effect.
+ImageLite::inst('./src.jpg')-&gt;resizeLetterbox(250, 300)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize image to match 250x300 using a letter box effect with a solid white background.
+ImageLite::inst('./src.jpg')-&gt;resizeLetterbox(250, 300, 'FFFFFF')-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize image to match 250x300 using a letter box effect with a transparent white background.
+ImageLite::inst('./src.jpg')-&gt;resizeLetterbox(250, 300, 'FFFFFF', 80)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+<p><strong>Background colours &amp; transparencies</strong></p>
+
+<ul>
+<li><code>JPG</code>: Only a solid background colour can be applied.</li>
+<li><code>PNG</code>: A solid or transparent background colour can be applied.</li>
+<li><code>GIF</code>: A solid background colour can be applied or a full transparency if <code>$bgAlpha</code> is set to <code>127</code>.</li>
+</ul>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$width</td>
+                                <td><p>Max width.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$height</td>
+                                <td><p>Max height.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$bgColour</td>
+                                <td><p>6-digit hexadecimal background colour (eg. <code>'FFFFFF'</code> = White).</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$bgAlpha</td>
+                                <td><p>Transparency of the background colour. Range: <code>0</code> (opaque) and <code>127</code> (transparent).</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resize" name="method_resize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resize(integer|null <span class="argument">$width</span>, integer|null <span class="argument">$height</span>) : object</pre>
+                <p><em>Set width/height for standard resize.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Resize to the maximum width of 250.
+ImageLite::inst('./src.jpg')-&gt;resize(250)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize to the maximum height of 300.
+ImageLite::inst('./src.jpg')-&gt;resize(null, 300)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Resize to fit within height and width.
+ImageLite::inst('./src.jpg')-&gt;resize(250, 300)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Disregard aspect ratio and resize to max width.
+ImageLite::inst('./src.jpg')-&gt;aspectRatio(false)-&gt;resize(250)-&gt;save('./new.jpg')-&gt;getUri();
+
+// Disregard aspect ratio and resize to max height.
+ImageLite::inst('./src.jpg')-&gt;aspectRatio(false)-&gt;resize(null, 300)-&gt;save('./new.jpg')-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$width</td>
+                                <td><p>Max width.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$height</td>
+                                <td><p>Max height.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_save" name="method_save" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">save()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">save(string|null <span class="argument">$customDestinationFilePath</span>, boolean <span class="argument">$createPath</span>) : object</pre>
+                <p><em>Save resized image.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Image is resized and stored in the cache.
+ImageLite::inst('./src.jpg')-&gt;resize(250)-&gt;save()-&gt;getUri();
+
+// Image is resized and stored in a custom destination.
+ImageLite::inst('./src.jpg')-&gt;resize(250)-&gt;save('./new/image.jpg')-&gt;getUri();
+
+// Image is resized and stored in a custom destination.
+// The path (./new/path/) is created if missing, see second argument.
+ImageLite::inst('./src.jpg')-&gt;resize(250)-&gt;save('./new/path/image.jpg', true)-&gt;getUri();
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$customDestinationFilePath</td>
+                                <td><p>Path to a custom destination file (if populated this is used instead of the cache path).</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$createPath</td>
+                                <td><p>Create the custom directory path of <code>$customDestinationFilePath</code> if it doesn't exist..</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If cache directory could not be set.</p>
+</dd>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If GD support for JPEG, GIF or PNG is not enabled.</p>
+</dd>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If the <code>save()</code> method is called before a <code>resize*()</code> method has been called.</p>
+</dd>
+                                                    <dt>\UnexpectedValueException</dt>
+                            <dd><p>If the new image could not be created.</p>
+</dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUri" name="method_getUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUri() : string</pre>
+                <p><em>Get image URI.</em></p>
+                <p>This method returns the path to the new resized image.</p>
+
+<p><strong>Example</strong></p>
+
+<pre><code>// Resize/save a new image and output the new URI.
+&lt;img src='&lt;?php echo ImageLite::inst('./src.jpg')-&gt;resize(250)-&gt;save('./tmp/new.jpg', true)-&gt;getUri(); ?&gt;' /&gt;;
+</code></pre>
+
+<p><strong>Output</strong></p>
+
+<pre><code>&lt;img src='/tmp/new.jpg' /&gt;
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>URI to the new resized image.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getBytes" name="method_getBytes" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getBytes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getBytes(string|integer <span class="argument">$val</span>) : integer</pre>
+                <p><em>Get bytes from shorthand byte notation.</em></p>
+                <p>If a suffix is not found, then the original value is returned.</p>
+
+<p><strong>Examples</strong></p>
+
+<pre><code>// Returns 1073741824 bytes
+$this-&gt;getBytes('1G');
+
+// Returns 1048576 bytes
+$this-&gt;getBytes('1M');
+
+// Returns 1024 bytes
+$this-&gt;getBytes('1K');
+
+// Returns 1024 bytes
+$this-&gt;getBytes('1024');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$val</td>
+                                <td><p>An integer followed by a suffix of <code>G</code> (Gig), <code>M</code> (Megabyte) or <code>K</code> (Kilobyte).</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMemoryExhaustedMsg" name="method_getMemoryExhaustedMsg" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getMemoryExhaustedMsg()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMemoryExhaustedMsg(string <span class="argument">$filePath</span>) : boolean|string</pre>
+                <p><em>Get a memory exhausted message.</em></p>
+                <p>Based on the width &amp; height of the source image and the current memory limit this method <em>estimates</em>
+how much memory will be required to resize the image without exhausting the memory.</p>
+
+<p><strong>Prevention</strong></p>
+
+<p>The aim is to prevent the common fatal error message such as <code>Fatal error: Allowed memory size of 76532345 bytes exhausted (tried to allocate 345 bytes)</code>.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filePath</td>
+                                <td><p>A file path can be added to the message (optional).</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean|string
+                                            &mdash; <p><code>string</code>: Memory could be exhausted. <code>false</code>: Memory will not be exhausted.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createDirectory" name="method_createDirectory" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">createDirectory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createDirectory(string <span class="argument">$path</span>, boolean <span class="argument">$hasFilename</span>) : void</pre>
+                <p><em>Create a directory path.</em></p>
+                <p><strong>Examples</strong></p>
+
+<pre><code>// Create directory /home/project/new-dir/
+self::createDirectory('/home/project/new-dir');
+
+// Create directory /home/project/new-dir/
+self::createDirectory('/home/project/new-dir/filename.jpg', true);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path</td>
+                                <td><p>Path to the directory.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$hasFilename</td>
+                                <td><p>Set as true to ignore a filename in the path.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If unable to create directory path.</p>
+</dd>
+                                                    <dt>\RuntimeException</dt>
+                            <dd><p>If path is not writeable or mode/permissions could not be changed.</p>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFilePath" name="method_setFilePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setFilePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFilePath(string <span class="argument">$filePath</span>) : void</pre>
+                <p><em>Set the path to the image file.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filePath</td>
+                                <td><p>The path to the image file.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If <code>$filePath</code> is empty.</p>
+</dd>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If file does not exist.</p>
+</dd>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If file is not readable.</p>
+</dd>
+                                                    <dt>\UnexpectedValueException</dt>
+                            <dd><p>If image is not a valid image format.</p>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasExpired" name="method_hasExpired" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">hasExpired()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasExpired(string <span class="argument">$filePath</span>) : boolean</pre>
+                <p><em>Has cached image expired.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filePath</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setImageInfo" name="method_setImageInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setImageInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setImageInfo(string <span class="argument">$filePath</span>) : boolean</pre>
+                <p><em>Set basic image information.</em></p>
+                <p>Obtain important details about the image such as width, height and file format for internal use.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filePath</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_preserveAlphaTransparency" name="method_preserveAlphaTransparency" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">preserveAlphaTransparency()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">preserveAlphaTransparency() : void</pre>
+                <p><em>Preserve alpha transparency.</em></p>
+                <p>Preserve the transparency of an image based on its format, ie. gif or png.</p>
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">ImageLite.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/ImageLite.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 26th, 2013 at 19:41.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
